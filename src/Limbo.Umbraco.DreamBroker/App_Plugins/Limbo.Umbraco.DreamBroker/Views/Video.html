@@ -31,7 +31,7 @@
                         <localize key="dreambroker_duration">Duration</localize>
                     </th>
                     <td>
-                        <span ng-repeat="dur in vm.$duration">
+                        <span ng-repeat="dur in vm.duration">
                             {{dur.value}} <small>{{dur.text}}</small>
                         </span>
                         <em ng-show="vm.duration.length == 0">N/A</em>

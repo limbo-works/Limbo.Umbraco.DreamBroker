@@ -36,6 +36,7 @@
 
   <!-- Include backoffice assets -->
   <ItemGroup>
+    <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\**\*.svg" />
     <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\**\*.css" />
     <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\**\*.html" />
     <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\**\*.js" />

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<language alias="en" intName="English (US)" localName="English (US)" lcid="" culture="en-US">
+  <area alias="dreambroker">
+    <key alias="id">ID</key>
+    <key alias="title">Title</key>
+    <key alias="duration">Duration</key>
+    <key alias="add">Add</key>
+    <key alias="refresh">Refresh</key>
+    <key alias="searchPlaceholder">Search for the video title...</key>
+  </area>
+</language>

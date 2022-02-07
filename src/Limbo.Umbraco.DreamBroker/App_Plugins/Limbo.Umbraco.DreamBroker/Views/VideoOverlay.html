@@ -1,0 +1,67 @@
+﻿﻿<div class="dreambroker-overlay" ng-controller="Limbo.Umbraco.DreamBroker.VideoOverlay as vm" ng-class="{loading: vm.loading}">
+    <umb-editor-view>
+        <umb-editor-header
+            name="model.title"
+            hide-icon="true"
+            hide-alias="true"
+            name-locked="true"
+            hide-description="true">
+        </umb-editor-header>
+        <umb-editor-container>
+            <umb-box>
+                <umb-box-content>
+                    <div>
+                        <input class="text" type="text" ng-model="vm.text" style="width: 100%;" ng-chafnge="textChanged()" placeholder="Søg på videons titel..." />
+                    </div>
+                    <div>
+                        <table class="table list">
+                            <thead>
+                            <tr>
+                                <th>
+                                    <localize key="dreambroker_id">ID</localize>
+                                </th>
+                                <th>
+                                    <localize key="dreambroker_duration">Duration</localize>
+                                </th>
+                                <th>
+                                    <localize key="dreambroker_title">Title</localize>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="video in vm.videos | orderBy: video.title | filter: vm.text">
+                                <td>
+                                    <code>{{video.videoId}}</code>
+                                </td>
+                                <td class="nw">
+                                    <span ng-repeat="dur in video.$duration">
+                                        {{dur.value}}<small>{{dur.suffix}}</small>
+                                    </span>
+                                    <em ng-show="video.$duration.length == 0">N/A</em>
+                                </td>
+                                <td class="fw">
+                                    <button type="button" ng-click="vm.select(video)" class="btn btn-link">
+                                        <strong>{{video.title}}</strong><br />
+                                        <small>{{video.$channelName}}</small>
+                                    </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </umb-box-content>
+            </umb-box>
+        </umb-editor-container>
+        <umb-editor-footer>
+            <umb-editor-footer-content-right>
+                <umb-button
+                    type="button"
+                    button-style="link"
+                    label-key="general_close"
+                    action="model.close()">
+                </umb-button>
+            </umb-editor-footer-content-right>
+        </umb-editor-footer>
+    </umb-editor-view>
+    <umb-load-indicator ng-if="loading" />
+</div>

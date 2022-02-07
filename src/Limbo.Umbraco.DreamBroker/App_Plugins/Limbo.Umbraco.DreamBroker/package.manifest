@@ -1,0 +1,7 @@
+﻿{
+  "javascript": [
+    "/App_Plugins/Limbo.Umbraco.DreamBroker/Scripts/Services/DreamBrokerService.js",
+    "/App_Plugins/Limbo.Umbraco.DreamBroker/Scripts/Controllers/Video.js",
+    "/App_Plugins/Limbo.Umbraco.DreamBroker/Scripts/Controllers/VideoOverlay.js"
+  ]
+}

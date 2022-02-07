@@ -7,10 +7,12 @@
     dreamBrokerService.getVideos().then(function (res) {
 
         vm.videos = [];
+        vm.channelCount = 0;
 
         res.data.channels.forEach(function(channel) {
             channel.videos.forEach(function (video) {
                 vm.videos.push(video);
+                vm.channelCount++;
                 video.$channelName = channel.name;
                 video.$duration = dreamBrokerService.getDuration(video.duration);
             });

@@ -13,7 +13,10 @@
                     <div>
                         <input class="text" type="text" ng-model="vm.text" style="width: 100%;" ng-chafnge="textChanged()" placeholder="Søg på videons titel..." />
                     </div>
-                    <div>
+                    <umb-empty-state ng-if="!vm.loading && vm.channelCount == 0" position="center">
+                        Der er endnu ikke tilføjet nogle kanaler i Umbraco.
+                    </umb-empty-state>
+                    <div ng-if="vm.vm.channelCount > 0">
                         <table class="table list">
                             <thead>
                             <tr>

@@ -40,10 +40,6 @@
     <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\**\*.html" />
     <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\**\*.js" />
     <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\Lang\*.xml" />
-    <None Remove="App_Plugins\Limbo.Umbraco.DreamBroker\Lang\da-DK.xml" />
-    <None Remove="App_Plugins\Limbo.Umbraco.DreamBroker\Lang\en-US.xml" />
-    <None Remove="App_Plugins\Limbo.Umbraco.DreamBroker\Scripts\Controllers\SuggestChannelOverlay.js" />
-    <None Remove="App_Plugins\Limbo.Umbraco.DreamBroker\Views\SuggestChannelOverlay.html" />
     <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\package.manifest" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-﻿angular.module("umbraco").controller("Limbo.Umbraco.DreamBroker.VideoOverlay", function ($scope, $http, dreamBrokerService) {
+﻿angular.module("umbraco").controller("Limbo.Umbraco.DreamBroker.VideoOverlay", function ($scope, dreamBrokerService) {
 
     const vm = this;
 

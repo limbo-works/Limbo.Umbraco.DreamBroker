@@ -4,6 +4,23 @@
     const cacheBuster = Umbraco.Sys.ServerVariables.application.cacheBuster;
     const umbracoPath = Umbraco.Sys.ServerVariables.umbracoSettings.umbracoPath;
 
+
+    function addChannel(channelId, channelName) {
+
+        const options = {
+            params: {
+                channelId: channelId,
+                name: channelName
+            }
+        };
+
+        // Fetches information about the video from our underlying API
+        return $http.get(`${umbracoPath}/backoffice/Limbo/DreamBroker/AddChannel`, options);
+
+
+    }
+
+
     // Fetches information about the video from our underlying API
     function getVideo(channelId, videoId) {
         return $http.get(`${umbracoPath}/backoffice/Limbo/DreamBroker/GetVideo?channelId=${channelId}&videoId=${videoId}`);
@@ -59,11 +76,9 @@
 
         const channelTitle = channel.name;
         const videoTitle = video.title;
-
-
-        var message = "Videoen <strong>" + video.title + "</strong> er en del af kananel <strong>" + channelTitle + "</strong>, som ikke allerede findes i Umbraco.<br /><br />Vil du tilføje kanalen i Umbraco?";
-
-
+        
+        const message = `Videoen <strong>${videoTitle}</strong> er en del af kananel <strong>${channelTitle
+            }</strong>, som ikke allerede findes i Umbraco.<br /><br />Vil du tilføje kanalen i Umbraco?`;
 
         const options = {
             title: "Tilføj kanal",
@@ -71,6 +86,14 @@
             channel: channel,
             video: video,
             message,
+            submitButtonLabelKey: "general_add",
+            submit: function () {
+                options.submitButtonState = "busy";
+                addChannel(channel.channelId, channel.name).then(function () {
+                    options.submitButtonState = "init";
+                    overlayService.close();
+                });
+            },
             close: function() {
                 overlayService.close();
             }

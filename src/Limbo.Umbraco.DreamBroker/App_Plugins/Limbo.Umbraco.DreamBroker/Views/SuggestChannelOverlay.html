@@ -1,5 +1,3 @@
 ﻿<div>
-    <pre>{{model.message}}</pre>
-    <pre>{{model.channel | json}}</pre>
-    <pre>{{model.video | json}}</pre>
+    <div class="alert alert-info" ng-bind-html="model.message"></div>
 </div>

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using Limbo.Umbraco.DreamBroker.Models;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Http;
+using Skybrud.Essentials.Http.Collections;
 using Skybrud.Essentials.Json;
 using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Essentials.Time;
@@ -115,6 +117,36 @@ namespace Limbo.Umbraco.DreamBroker.Services {
         public VideoItem[] GetChannelVideos(DreamBrokerChannel channel) {
             if (channel == null) throw new ArgumentNullException(nameof(channel));
             return GetChannelVideos(channel.ChannelId);
+        }
+
+        /// <summary>
+        /// Returns OEmbed details for the video matching the specified <paramref name="channelId"/> and <paramref name="videoId"/>.
+        /// </summary>
+        /// <param name="channelId">The ID of the channel.</param>
+        /// <param name="videoId">The ID of the video.</param>
+        /// <returns>An instance of <see cref="DreamBrokerOEmbed"/>.</returns>
+        public DreamBrokerOEmbed GetOEmbed(string channelId, string videoId) {
+            
+            // Input validation
+            if (string.IsNullOrWhiteSpace(channelId)) throw new ArgumentNullException(nameof(channelId));
+            if (string.IsNullOrWhiteSpace(videoId)) throw new ArgumentNullException(nameof(videoId));
+
+            // Initialize the query string
+            IHttpQueryString query = new HttpQueryString {
+                { "url", $"https://dreambroker.com/channel/{channelId}/{videoId}" },
+                { "format", "json" }
+            };
+
+            // Get video information from the OEmbed endpoint
+            IHttpResponse response = HttpUtils.Requests
+                    .Get("https://dreambroker.com/channel/oembed", query);
+
+            // Validate the response
+            if (response.StatusCode != HttpStatusCode.OK) throw new Exception($"Failed getting OEmbed details for video.\r\n\r\nChannel ID: {channelId}\r\nVideo ID: {videoId}");
+
+            // Parse the response body
+            return JsonUtils.ParseJsonObject(response.Body, DreamBrokerOEmbed.Parse);
+
         }
 
         #endregion

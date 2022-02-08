@@ -38,6 +38,12 @@ namespace Limbo.Umbraco.DreamBroker.Models {
         [JsonConverter(typeof(TimeSpanSecondsConverter))]
         public TimeSpan Duration { get; }
 
+        /// <summary>
+        /// Gets an array with the thumbnails of the video.
+        /// </summary>
+        [JsonProperty("thumbnails")]
+        public DreamBrokerThumbnail[] Thumbnails { get; }
+
         #endregion
 
         #region Constructors
@@ -47,6 +53,9 @@ namespace Limbo.Umbraco.DreamBroker.Models {
             VideoId = json.GetString("videoId");
             Title = json.GetString("title");
             Duration = json.GetDouble("duration", TimeSpan.FromSeconds);
+            Thumbnails = new[] {
+                DreamBrokerThumbnail.Create(this, 470, 264, true)
+            };
         }
 
         #endregion

@@ -1,11 +1,9 @@
-﻿using System;
-using Limbo.Umbraco.DreamBroker.PropertyEditors;
+﻿using Limbo.Umbraco.DreamBroker.PropertyEditors;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
 namespace Limbo.Umbraco.DreamBroker.Models {
-    
 
     /// <summary>
     /// Class representing the value of a <see cref="DreamBrokerEditor"/> property editor.
@@ -26,6 +24,12 @@ namespace Limbo.Umbraco.DreamBroker.Models {
         [JsonProperty("video")]
         public DreamBrokerVideoDetails Video { get; }
 
+        /// <summary>
+        /// Gets embed information for the video.
+        /// </summary>
+        [JsonProperty("video")]
+        public DreamBrokerEmbed Embed { get; }
+
         #endregion
 
         #region Constructors
@@ -33,6 +37,7 @@ namespace Limbo.Umbraco.DreamBroker.Models {
         private DreamBrokerValue(JObject json) {
             Url = json.GetString("url");
             Video = json.GetObject("video", DreamBrokerVideoDetails.Parse);
+            Embed = new DreamBrokerEmbed(Video);
         }
 
         #endregion

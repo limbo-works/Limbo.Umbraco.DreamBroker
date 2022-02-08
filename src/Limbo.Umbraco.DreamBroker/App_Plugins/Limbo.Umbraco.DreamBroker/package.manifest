@@ -1,4 +1,7 @@
 ﻿{
+  "css": [
+    "/App_Plugins/Limbo.Umbraco.DreamBroker/Styles/Default.css"
+  ],
   "javascript": [
     "/App_Plugins/Limbo.Umbraco.DreamBroker/Scripts/Services/DreamBrokerService.js",
     "/App_Plugins/Limbo.Umbraco.DreamBroker/Scripts/Controllers/Video.js",

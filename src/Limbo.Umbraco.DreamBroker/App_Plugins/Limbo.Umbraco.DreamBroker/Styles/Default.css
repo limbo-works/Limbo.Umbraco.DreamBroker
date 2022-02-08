@@ -1,0 +1,71 @@
+﻿.color-dreambroker {
+  color: #89339e;
+}
+.dreambroker-video {
+  position: relative;
+}
+.dreambroker-video.loading > div {
+  opacity: 0.5;
+}
+.dreambroker-video input {
+  width: 100%;
+  flex: 1;
+}
+.dreambroker-video-input {
+  display: flex;
+}
+.dreambroker-video button {
+  margin-left: 7px;
+}
+.dreambroker-video-details {
+  display: flex;
+  margin-top: 10px;
+}
+.dreambroker-video-details img {
+  margin-right: 10px;
+}
+.dreambroker-video-details table {
+  background: none;
+}
+.dreambroker-video-details table th {
+  text-align: left;
+  padding-right: 25px;
+}
+.dreambroker-video-details table th,
+.dreambroker-video-details table td {
+  font-size: 14px;
+  vertical-align: top;
+}
+.dreambroker-video-details table tr + tr th,
+.dreambroker-video-details table tr + tr td {
+  padding-top: 4px;
+}
+.dreambroker-video pre {
+  display: none;
+}
+.dreambroker-overlay table {
+  border: 1px solid #e9e9eb;
+  box-shadow: none;
+}
+.dreambroker-overlay table th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.dreambroker-overlay table tr > td:first-child {
+  border-left: 1px solid #e9e9eb !important;
+}
+.dreambroker-overlay table tr > td:last-child {
+  border-right: 1px solid #e9e9eb !important;
+}
+.dreambroker-overlay table th.nw,
+.dreambroker-overlay table td.nw {
+  white-space: nowrap;
+}
+.dreambroker-overlay table th.fw,
+.dreambroker-overlay table td.fw {
+  width: 100%;
+}
+.dreambroker-overlay table button {
+  text-align: left;
+  padding: 0;
+}

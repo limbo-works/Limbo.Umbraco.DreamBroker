@@ -1,0 +1,90 @@
+﻿.color-dreambroker {
+    color: #89339e;
+}
+
+.dreambroker-video {
+
+    position: relative;
+
+    &.loading > div {
+        opacity: 0.5;
+    }
+    
+    input {
+        width: 100%;
+        flex: 1;
+    }
+
+    &-input {
+        display: flex;
+    }
+
+    button {
+        margin-left: 7px;
+    }
+
+    &-details {
+        display: flex;
+        margin-top: 10px;
+        img {
+            margin-right: 10px;
+        }
+
+        table {
+            background: none;
+            th {
+                text-align: left;
+                padding-right: 25px;
+            }
+            th, td {
+                font-size: 14px;
+                vertical-align: top;
+            }
+            tr + tr {
+                th, td {
+                    padding-top: 4px;
+                }
+            }
+        }
+
+    }
+
+    pre {
+        display: none;
+    }
+
+}
+
+.dreambroker-overlay {
+
+    table {
+
+        border: 1px solid #e9e9eb;
+        box-shadow: none;
+
+        th {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        tr > td:first-child {
+            border-left: 1px solid #e9e9eb !important;
+        }
+
+        tr > td:last-child {
+            border-right: 1px solid #e9e9eb !important;
+        }
+
+        th, td {
+            &.nw { white-space: nowrap; }
+            &.fw { width: 100%; }
+        }
+
+        button {
+            text-align: left;
+            padding: 0;
+        }
+    
+    }
+
+}

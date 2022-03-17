@@ -27,7 +27,7 @@ namespace Limbo.Umbraco.DreamBroker.Models {
         /// <summary>
         /// Gets embed information for the video.
         /// </summary>
-        [JsonProperty("video")]
+        [JsonProperty("embed")]
         public DreamBrokerEmbed Embed { get; }
 
         #endregion

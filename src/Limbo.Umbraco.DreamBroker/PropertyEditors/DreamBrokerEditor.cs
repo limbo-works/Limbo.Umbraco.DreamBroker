@@ -18,7 +18,7 @@ namespace Limbo.Umbraco.DreamBroker.PropertyEditors {
 
         internal const string EditorView = "/App_Plugins/Limbo.Umbraco.DreamBroker/Views/Video.html";
 
-        internal const string EditorIcon = "icon-video color-limbo";
+        internal const string EditorIcon = "icon-dreambroker color-limbo";
 
         #endregion
 

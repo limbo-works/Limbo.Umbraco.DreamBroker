@@ -1,5 +1,8 @@
-﻿.color-dreambroker {
-  color: #89339e;
+﻿.icon-dreambroker svg path.d {
+  fill: #1b191a;
+}
+.icon-dreambroker svg path.b {
+  fill: #89339e;
 }
 .dreambroker-video {
   position: relative;

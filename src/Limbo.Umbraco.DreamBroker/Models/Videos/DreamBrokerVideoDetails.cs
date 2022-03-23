@@ -28,6 +28,12 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         public string ChannelId { get; }
 
         /// <summary>
+        /// Gets the Vimeo URL of the video.
+        /// </summary>
+        [JsonProperty("url")]
+        public string Url { get; }
+
+        /// <summary>
         /// Gets the title of the video.
         /// </summary>
         [JsonProperty("title")]
@@ -61,6 +67,7 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         private DreamBrokerVideoDetails(JObject json) {
             ChannelId = json.GetString("channelId");
             VideoId = json.GetString("videoId");
+            Url = $"https://www.dreambroker.com/channel/{ChannelId}/{VideoId}";
             Title = json.GetString("title");
             Duration = json.GetDouble("duration", TimeSpan.FromSeconds);
             Thumbnails = new[] {

@@ -1,5 +1,6 @@
 ﻿using Limbo.Umbraco.Video.Models.Videos;
 using Microsoft.AspNetCore.Html;
+using Newtonsoft.Json;
 
 namespace Limbo.Umbraco.DreamBroker.Models.Videos {
     
@@ -11,6 +12,12 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         #region Properties
 
         /// <summary>
+        /// Gets the embed URL.
+        /// </summary>
+        [JsonProperty("url")]
+        public string Url { get; }
+
+        /// <summary>
         /// Gets the HTML embed code.
         /// </summary>
         public HtmlString Html { get; }
@@ -20,7 +27,8 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         #region Constructors
 
         internal DreamBrokerEmbed(DreamBrokerVideoDetails video) {
-            Html = new HtmlString($"<iframe frameborder=\"0\" width=\"854\" height=\"480\" allowfullscreen webkitallowfullscreen mozallowfullscreen  src=\"https://dreambroker.com/channel/{video.ChannelId}/iframe/{video.VideoId}\"></iframe>");
+            Url = $"https://dreambroker.com/channel/{video.ChannelId}/iframe/{video.VideoId}";
+            Html = new HtmlString($"<iframe frameborder=\"0\" width=\"854\" height=\"480\" allowfullscreen webkitallowfullscreen mozallowfullscreen src=\"{Url}\"></iframe>");
         }
 
         #endregion

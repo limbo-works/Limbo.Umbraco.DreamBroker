@@ -4,7 +4,7 @@ This package features a property editor for inserting (via URL) or selecting a D
 
 ## Installation
 
-Install for Umbraco 9 via [NuGet](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/1.0.0-alpha002):
+Install for Umbraco 9 via [NuGet](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/1.0.0-alpha004):
 
 ```
 dotnet add package Limbo.Umbraco.DreamBroker --version 1.0.0-alpha002

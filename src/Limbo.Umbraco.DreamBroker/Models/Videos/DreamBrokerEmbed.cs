@@ -20,7 +20,7 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         #region Constructors
 
         internal DreamBrokerEmbed(DreamBrokerVideoDetails video) {
-            Html = new HtmlString($"<iframe frameborder=\"0\" width=\"854\" height=\"480\" allowfullscreen webkitallowfullscreen mozallowfullscreen  src=\"https://dreambroker.com/channel/{video.ChannelId}/iframe/{video.ChannelId}\"></iframe>");
+            Html = new HtmlString($"<iframe frameborder=\"0\" width=\"854\" height=\"480\" allowfullscreen webkitallowfullscreen mozallowfullscreen  src=\"https://dreambroker.com/channel/{video.ChannelId}/iframe/{video.VideoId}\"></iframe>");
         }
 
         #endregion

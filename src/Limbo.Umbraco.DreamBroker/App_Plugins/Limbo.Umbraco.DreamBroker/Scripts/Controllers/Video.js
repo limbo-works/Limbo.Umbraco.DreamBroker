@@ -76,7 +76,7 @@
 
             // Fix "legacy" values
             if ($scope.model.value.url && !$scope.model.value.source) {
-                $scope.model.value.source = $scope.model.value.url
+                $scope.model.value.source = $scope.model.value.url;
                 delete $scope.model.value.url;
             }
 

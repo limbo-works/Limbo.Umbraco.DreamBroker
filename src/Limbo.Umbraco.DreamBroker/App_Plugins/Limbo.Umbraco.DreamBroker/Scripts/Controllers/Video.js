@@ -46,6 +46,10 @@
         vm.getVideo();
     };
 
+    vm.refresh = function () {
+        vm.getVideo();
+    };
+
     // Opens a new overlay where the editor can search and pick videos
     vm.add = function() {
         dreamBrokerService.openAddVideo(function(video) {

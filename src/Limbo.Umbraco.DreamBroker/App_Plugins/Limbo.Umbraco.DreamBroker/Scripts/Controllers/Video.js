@@ -2,16 +2,12 @@
 
     const vm = this;
 
-    if (!$scope.model.value) {
-        $scope.model.value = { url: "" };
-    }
-
     // Gets information about the video of the entered URL
     vm.getVideo = function() {
 
-        const url = $scope.model.value.url.trim().replace(/\/$/, "");
+        const source = $scope.model.value && $scope.model.value.source && $scope.model.value.source.trim().replace(/\/$/, "");
 
-        const m = url.match(/^https:\/\/(www\.|)dreambroker\.com\/channel\/([a-z0-9]+)\/([a-z0-9]+)/);
+        const m = source.match(/^https:\/\/(www\.|)dreambroker\.com\/channel\/([a-z0-9]+)\/([a-z0-9]+)/);
 
         if (m) {
 
@@ -54,7 +50,7 @@
     vm.add = function() {
         dreamBrokerService.openAddVideo(function(video) {
             $scope.model.value.video = video;
-            $scope.model.value.url = dreamBrokerService.getVideoUrl(video.channelId, video.videoId);
+            $scope.model.value.source = dreamBrokerService.getVideoUrl(video.channelId, video.videoId);
             vm.updateUI();
         });
     };
@@ -74,6 +70,22 @@
 
     };
 
-    vm.updateUI();
+    function init() {
+
+        if ($scope.model.value) {
+
+            // Fix "legacy" values
+            if ($scope.model.value.url && !$scope.model.value.source) {
+                $scope.model.value.source = $scope.model.value.url
+                delete $scope.model.value.url;
+            }
+
+        }
+
+        vm.updateUI();
+
+    }
+
+    init();
 
 });

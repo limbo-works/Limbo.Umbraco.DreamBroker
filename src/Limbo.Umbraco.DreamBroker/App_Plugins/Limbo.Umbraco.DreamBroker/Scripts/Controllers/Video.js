@@ -58,7 +58,7 @@
     // Updates the video information for the UI
     vm.updateUI = function () {
 
-        const video = $scope.model.value.video;
+        const video = $scope.model.value && $scope.model.value.video;
 
         if (!video) {
             vm.thumbnail = null;
@@ -79,6 +79,10 @@
                 $scope.model.value.source = $scope.model.value.url;
                 delete $scope.model.value.url;
             }
+
+        } else {
+
+            $scope.model.value = null;
 
         }
 

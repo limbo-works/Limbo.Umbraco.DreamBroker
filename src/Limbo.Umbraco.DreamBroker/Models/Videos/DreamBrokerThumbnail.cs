@@ -1,11 +1,12 @@
 ﻿using System;
+using Limbo.Umbraco.Video.Models.Videos;
 
-namespace Limbo.Umbraco.DreamBroker.Models {
+namespace Limbo.Umbraco.DreamBroker.Models.Videos {
     
     /// <summary>
     /// Class representing a DreamBroker thumbnail.
     /// </summary>
-    public class DreamBrokerThumbnail {
+    public class DreamBrokerThumbnail : IVideoThumbnail {
 
         #region Properties
 

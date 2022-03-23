@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
-namespace Limbo.Umbraco.DreamBroker.Models {
+namespace Limbo.Umbraco.DreamBroker.Models.Videos {
     
     /// <summary>
     /// Class representing the OEmbed value returned by the DreamBroker API.

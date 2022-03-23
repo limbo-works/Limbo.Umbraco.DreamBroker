@@ -1,5 +1,5 @@
 ﻿using System;
-using Limbo.Umbraco.DreamBroker.Models;
+using Limbo.Umbraco.DreamBroker.Models.Videos;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json;
 using Umbraco.Cms.Core.Models.PublishedContent;

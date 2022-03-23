@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
-using Limbo.Umbraco.DreamBroker.Models;
+using Limbo.Umbraco.DreamBroker.Models.Channels;
+using Limbo.Umbraco.DreamBroker.Models.Videos;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Collections;

@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Html;
+﻿using Limbo.Umbraco.Video.Models.Videos;
+using Microsoft.AspNetCore.Html;
 
-namespace Limbo.Umbraco.DreamBroker.Models {
+namespace Limbo.Umbraco.DreamBroker.Models.Videos {
     
     /// <summary>
     /// Class representing the embed options of the video.
     /// </summary>
-    public class DreamBrokerEmbed {
+    public class DreamBrokerEmbed : IVideoEmbed {
 
         #region Properties
 

@@ -3,6 +3,8 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using Limbo.Umbraco.DreamBroker.Models;
+using Limbo.Umbraco.DreamBroker.Models.Channels;
+using Limbo.Umbraco.DreamBroker.Models.Videos;
 using Limbo.Umbraco.DreamBroker.Services;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Http;

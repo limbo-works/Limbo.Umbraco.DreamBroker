@@ -1,7 +1,9 @@
-﻿.icon-dreambroker svg path.d {
+﻿.icon-dreambroker svg path.d,
+.color-dreambroker svg path.d {
   fill: #1b191a;
 }
-.icon-dreambroker svg path.b {
+.icon-dreambroker svg path.b,
+.color-dreambroker svg path.b {
   fill: #89339e;
 }
 .dreambroker-video {

@@ -1,4 +1,5 @@
-﻿using Limbo.Umbraco.DreamBroker.Services;
+﻿using Limbo.Umbraco.DreamBroker.Manifests;
+using Limbo.Umbraco.DreamBroker.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
@@ -11,6 +12,7 @@ namespace Limbo.Umbraco.DreamBroker.Composers {
 
         public void Compose(IUmbracoBuilder builder) {
             builder.Services.AddTransient<DreamBrokerService>();
+            builder.ManifestFilters().Append<DreamBrokerManifestFilter>();
         }
 
     }

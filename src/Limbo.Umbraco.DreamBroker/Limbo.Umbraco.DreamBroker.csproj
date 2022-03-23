@@ -44,7 +44,6 @@
     <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\**\*.html" />
     <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\**\*.js" />
     <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\Lang\*.xml" />
-    <Content Include="App_Plugins\Limbo.Umbraco.DreamBroker\package.manifest" />
   </ItemGroup>
 
   <!-- Include the targets file -->

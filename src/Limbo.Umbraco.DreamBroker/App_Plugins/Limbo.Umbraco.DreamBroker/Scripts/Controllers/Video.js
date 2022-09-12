@@ -22,9 +22,10 @@
                     dreamBrokerService.openSuggestChannel(channel, video);
                 }
 
+                if (!$scope.model.value) $scope.model.value = {};
                 $scope.model.value.video = video;
                 vm.loading = false;
-                vm.updateUI();
+                vm.update();
 
             });
 
@@ -32,6 +33,7 @@
 
             delete $scope.model.value.channel;
             delete $scope.model.value.video;
+            vm.update();
 
         }
 
@@ -48,17 +50,27 @@
 
     // Opens a new overlay where the editor can search and pick videos
     vm.add = function() {
-        dreamBrokerService.openAddVideo(function(video) {
+        dreamBrokerService.openAddVideo(function (video) {
+            if (!$scope.model.value) $scope.model.value = {};
             $scope.model.value.video = video;
             $scope.model.value.source = dreamBrokerService.getVideoUrl(video.channelId, video.videoId);
-            vm.updateUI();
+            vm.update();
         });
     };
 
     // Updates the video information for the UI
-    vm.updateUI = function () {
+    vm.update = function () {
 
+        const url = $scope.model.value && $scope.model.value.url;
+        const source = $scope.model.value && $scope.model.value.source;
         const video = $scope.model.value && $scope.model.value.video;
+
+        if (!url && !source && !video) {
+            $scope.model.value = null;
+            vm.duration = null;
+            vm.thumbnail = null;
+            return;
+        }
 
         if (!video) {
             vm.thumbnail = null;
@@ -86,7 +98,7 @@
 
         }
 
-        vm.updateUI();
+        vm.update();
 
     }
 

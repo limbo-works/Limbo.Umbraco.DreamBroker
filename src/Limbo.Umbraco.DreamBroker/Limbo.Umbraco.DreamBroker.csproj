@@ -19,7 +19,7 @@
   <!-- Information for the NuGet package -->
   <PropertyGroup>
     <PackageId>Limbo.Umbraco.DreamBroker</PackageId>
-    <PackageTags>Skybrud, Limbo, Umbraco, DreamBroker, Video</PackageTags>
+    <PackageTags>Skybrud, Limbo, Umbraco, DreamBroker, Video, Umbraco-Marketplace</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/limbo-works/Limbo.Umbraco.DreamBroker</PackageProjectUrl>
     <PackageIcon>Limbo.png</PackageIcon>

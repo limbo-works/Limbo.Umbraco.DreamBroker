@@ -12,13 +12,13 @@ namespace Limbo.Umbraco.DreamBroker.PropertyEditors {
 
         #region Constants
 
-        internal const string EditorAlias = "Limbo.Umbraco.DreamBroker";
+        public const string EditorAlias = "Limbo.Umbraco.DreamBroker";
 
-        internal const string EditorName = "Limbo DreamBroker Video";
+        public const string EditorName = "Limbo DreamBroker Video";
 
-        internal const string EditorView = "/App_Plugins/Limbo.Umbraco.DreamBroker/Views/Video.html";
+        public const string EditorView = "/App_Plugins/Limbo.Umbraco.DreamBroker/Views/Video.html";
 
-        internal const string EditorIcon = "icon-dreambroker color-limbo";
+        public const string EditorIcon = "icon-dreambroker color-limbo";
 
         #endregion
 

@@ -96,7 +96,7 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         /// <returns>An instance of <see cref="DreamBrokerThumbnail"/>.</returns>
         public static DreamBrokerThumbnail Create(DreamBrokerValue value, int width, int height, bool crop) {
             if (value == null) throw new ArgumentNullException(nameof(value));
-            return Create(value.Video, width, height, crop);
+            return Create(value.Details, width, height, crop);
         }
 
         #endregion

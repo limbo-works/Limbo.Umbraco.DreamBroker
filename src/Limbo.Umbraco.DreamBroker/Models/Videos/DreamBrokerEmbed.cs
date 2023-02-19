@@ -20,7 +20,7 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         /// <summary>
         /// Gets the HTML embed code.
         /// </summary>
-        public HtmlString Html { get; }
+        public IHtmlContent Html { get; }
 
         #endregion
 

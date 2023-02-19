@@ -44,7 +44,7 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         /// </summary>
         [JsonProperty("duration")]
         [JsonConverter(typeof(TimeSpanSecondsConverter))]
-        public TimeSpan Duration { get; }
+        public TimeSpan? Duration { get; }
 
         /// <summary>
         /// Gets an array with the thumbnails of the video.

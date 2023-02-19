@@ -1,4 +1,5 @@
 ﻿using Limbo.Umbraco.DreamBroker.PropertyEditors;
+using Limbo.Umbraco.Video.Models.Providers;
 using Limbo.Umbraco.Video.Models.Videos;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -20,10 +21,16 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         public string Source { get; }
 
         /// <summary>
+        /// Gets information about the video provider.
+        /// </summary>
+        [JsonProperty("provider")]
+        public DreamBrokerVideoProvider Provider { get; }
+
+        /// <summary>
         /// Gets the details about the picked video.
         /// </summary>
-        [JsonProperty("video")]
-        public DreamBrokerVideoDetails Video { get; }
+        [JsonProperty("details")]
+        public DreamBrokerVideoDetails Details { get; }
 
         /// <summary>
         /// Gets embed information for the video.
@@ -31,7 +38,9 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         [JsonProperty("embed")]
         public DreamBrokerEmbed Embed { get; }
 
-        IVideoDetails IVideoValue.Video => Video;
+        IVideoProvider IVideoValue.Provider => Provider;
+
+        IVideoDetails IVideoValue.Details => Details;
 
         IVideoEmbed IVideoValue.Embed => Embed;
 
@@ -41,8 +50,9 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
 
         private DreamBrokerValue(JObject json) {
             Source = json.GetString("source") ?? json.GetString("url");
-            Video = json.GetObject("video", DreamBrokerVideoDetails.Parse);
-            Embed = new DreamBrokerEmbed(Video);
+            Provider = DreamBrokerVideoProvider.Default;
+            Details = json.GetObject("details", DreamBrokerVideoDetails.Parse) ?? json.GetObject("video", DreamBrokerVideoDetails.Parse);
+            Embed = new DreamBrokerEmbed(Details);
         }
 
         #endregion

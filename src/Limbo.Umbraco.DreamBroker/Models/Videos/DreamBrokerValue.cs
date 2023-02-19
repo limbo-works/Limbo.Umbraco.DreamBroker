@@ -1,4 +1,5 @@
-﻿using Limbo.Umbraco.DreamBroker.PropertyEditors;
+﻿using System.Diagnostics.CodeAnalysis;
+using Limbo.Umbraco.DreamBroker.PropertyEditors;
 using Limbo.Umbraco.Video.Models.Providers;
 using Limbo.Umbraco.Video.Models.Videos;
 using Newtonsoft.Json;
@@ -49,9 +50,9 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         #region Constructors
 
         private DreamBrokerValue(JObject json) {
-            Source = json.GetString("source") ?? json.GetString("url");
+            Source = json.GetString("source") ?? json.GetString("url")!;
             Provider = DreamBrokerVideoProvider.Default;
-            Details = json.GetObject("details", DreamBrokerVideoDetails.Parse) ?? json.GetObject("video", DreamBrokerVideoDetails.Parse);
+            Details = json.GetObject("details", DreamBrokerVideoDetails.Parse) ?? json.GetObject("video", DreamBrokerVideoDetails.Parse)!;
             Embed = new DreamBrokerEmbed(Details);
         }
 
@@ -59,7 +60,8 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
 
         #region Static methods
 
-        internal static DreamBrokerValue Parse(JObject json) {
+        [return: NotNullIfNotNull("json")]
+        internal static DreamBrokerValue? Parse(JObject? json) {
             return json == null ? null : new DreamBrokerValue(json);
         }
 

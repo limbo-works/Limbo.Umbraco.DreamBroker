@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Limbo.Umbraco.Video.Models.Videos;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -65,10 +66,10 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         #region Constructors
 
         private DreamBrokerVideoDetails(JObject json) {
-            ChannelId = json.GetString("channelId");
-            VideoId = json.GetString("videoId");
+            ChannelId = json.GetString("channelId")!;
+            VideoId = json.GetString("videoId")!;
             Url = $"https://www.dreambroker.com/channel/{ChannelId}/{VideoId}";
-            Title = json.GetString("title");
+            Title = json.GetString("title")!;
             Duration = json.GetDouble("duration", TimeSpan.FromSeconds);
             Thumbnails = new[] {
                 DreamBrokerThumbnail.Create(this, 470, 264, true)
@@ -80,7 +81,8 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
 
         #region Static methods
 
-        internal static DreamBrokerVideoDetails Parse(JObject json) {
+        [return: NotNullIfNotNull("json")]
+        internal static DreamBrokerVideoDetails? Parse(JObject? json) {
             return json == null ? null : new DreamBrokerVideoDetails(json);
         }
 

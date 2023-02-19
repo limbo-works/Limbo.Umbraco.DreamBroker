@@ -42,14 +42,12 @@ namespace Limbo.Umbraco.DreamBroker.Services {
         /// <returns>An instance of <see cref="DreamBrokerChannel"/> representing the created channel.</returns>
         public DreamBrokerChannel AddChannel(string channelId, string name) {
 
+            // Prepare details for the new channel
+            Guid key = Guid.NewGuid();
+            EssentialsTime now = EssentialsTime.UtcNow;
+
             // Initialize a new channel
-            DreamBrokerChannel channel = new() {
-                Key = Guid.NewGuid(),
-                Name = name,
-                ChannelId = channelId,
-                CreateDate = EssentialsTime.UtcNow,
-                UpdateDate = EssentialsTime.UtcNow
-            };
+            DreamBrokerChannel channel = new(key, name, channelId, now, now);
 
             // Save the channel in Umbraco
             _keyValueService.SetValue($"Limbo.Umbraco.DreamBroker.Channels.{channel.Key}", JsonConvert.SerializeObject(channel));
@@ -63,7 +61,7 @@ namespace Limbo.Umbraco.DreamBroker.Services {
         /// </summary>
         /// <param name="channelId">The ID or key of the channel.</param>
         /// <returns>An instance of <see cref="DreamBrokerChannel"/>, or <c>null</c> if not found.</returns>
-        public DreamBrokerChannel GetChannel(string channelId) {
+        public DreamBrokerChannel? GetChannel(string channelId) {
             if (string.IsNullOrWhiteSpace(channelId)) throw new ArgumentNullException(nameof(channelId));
             return GetChannels().FirstOrDefault(x => x.ChannelId == channelId || x.Key.ToString() == channelId);
         }
@@ -74,7 +72,7 @@ namespace Limbo.Umbraco.DreamBroker.Services {
         /// <param name="channel">The channel to be deleted.</param>
         public void DeleteChannel(DreamBrokerChannel channel) {
             if (channel == null) throw new ArgumentNullException(nameof(channel));
-            _keyValueService.SetValue($"Limbo.Umbraco.DreamBroker.Channels.{channel.Key}", null);
+            _keyValueService.SetValue($"Limbo.Umbraco.DreamBroker.Channels.{channel.Key}", null!);
         }
 
         /// <summary>
@@ -83,9 +81,9 @@ namespace Limbo.Umbraco.DreamBroker.Services {
         /// <returns>An array of <see cref="DreamBrokerChannel"/>.</returns>
         public DreamBrokerChannel[] GetChannels() {
             return _keyValueService
-                .FindByKeyPrefix("Limbo.Umbraco.DreamBroker.Channels.").Values
-                .Select(x => JsonUtils.ParseJsonObject(x, DreamBrokerChannel.Parse))
-                .ToArray();
+                .FindByKeyPrefix("Limbo.Umbraco.DreamBroker.Channels.")?.Values
+                .Select(x => JsonUtils.ParseJsonObject(x!, DreamBrokerChannel.Parse)!)
+                .ToArray() ?? Array.Empty<DreamBrokerChannel>();
         }
 
         /// <summary>
@@ -146,7 +144,7 @@ namespace Limbo.Umbraco.DreamBroker.Services {
             if (response.StatusCode != HttpStatusCode.OK) throw new Exception($"Failed getting OEmbed details for video.\r\n\r\nChannel ID: {channelId}\r\nVideo ID: {videoId}");
 
             // Parse the response body
-            return JsonUtils.ParseJsonObject(response.Body, DreamBrokerOEmbed.Parse);
+            return JsonUtils.ParseJsonObject(response.Body, DreamBrokerOEmbed.Parse)!;
 
         }
 

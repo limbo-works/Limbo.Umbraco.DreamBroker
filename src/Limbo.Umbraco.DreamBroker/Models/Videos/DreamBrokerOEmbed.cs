@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
 
 namespace Limbo.Umbraco.DreamBroker.Models.Videos {
@@ -40,9 +41,9 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         #region Constructors
 
         private DreamBrokerOEmbed(JObject obj) {
-            Title = obj.GetString("title");
-            Html = obj.GetString("html");
-            ThumbnailUrl = obj.GetString("thumbnail_url");
+            Title = obj.GetString("title")!;
+            Html = obj.GetString("html")!;
+            ThumbnailUrl = obj.GetString("thumbnail_url")!;
             ThumbnailWidth = obj.GetInt32("thumbnail_width");
             ThumbnailHeight = obj.GetInt32("thumbnail_height");
         }
@@ -51,7 +52,8 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
 
         #region Static methods
 
-        internal static DreamBrokerOEmbed Parse(JObject json) {
+        [return: NotNullIfNotNull("json")]
+        internal static DreamBrokerOEmbed? Parse(JObject? json) {
             return json == null ? null : new DreamBrokerOEmbed(json);
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Json.Extensions;
@@ -47,21 +48,28 @@ namespace Limbo.Umbraco.DreamBroker.Models.Channels {
 
         #region Constructors
 
-        internal DreamBrokerChannel() { }
-
         private DreamBrokerChannel(JObject json) {
             Key = json.GetGuid("key");
-            Name = json.GetString("name");
-            ChannelId = json.GetString("channelId");
-            CreateDate = json.GetString("createDate", EssentialsTime.FromIso8601);
-            UpdateDate = json.GetString("updateDate", EssentialsTime.FromIso8601);
+            Name = json.GetString("name")!;
+            ChannelId = json.GetString("channelId")!;
+            CreateDate = json.GetString("createDate", EssentialsTime.FromIso8601)!;
+            UpdateDate = json.GetString("updateDate", EssentialsTime.FromIso8601)!;
+        }
+
+        internal DreamBrokerChannel(Guid key, string name, string channelId, EssentialsTime createDate, EssentialsTime updateDate) {
+            Key = key;
+            Name = name;
+            ChannelId = channelId;
+            CreateDate = createDate;
+            UpdateDate = updateDate;
         }
 
         #endregion
 
         #region Static methods
 
-        internal static DreamBrokerChannel Parse(JObject json) {
+        [return: NotNullIfNotNull("json")]
+        internal static DreamBrokerChannel? Parse(JObject? json) {
             return json == null ? null : new DreamBrokerChannel(json);
         }
 

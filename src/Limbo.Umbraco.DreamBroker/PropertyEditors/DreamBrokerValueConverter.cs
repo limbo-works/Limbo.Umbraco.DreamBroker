@@ -19,16 +19,12 @@ namespace Limbo.Umbraco.DreamBroker.PropertyEditors {
             return propertyType.EditorAlias == DreamBrokerEditor.EditorAlias;
         }
 
-        public override object ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object source, bool preview) {
+        public override object? ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source, bool preview) {
             return source is string str && str.DetectIsJson() ? JsonUtils.ParseJsonObject(str) : null;
         }
 
-        public override object ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object inter, bool preview) {
+        public override object? ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object? inter, bool preview) {
             return DreamBrokerValue.Parse(inter as JObject);
-        }
-
-        public override object ConvertIntermediateToXPath(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object inter, bool preview) {
-            return null;
         }
 
         public override Type GetPropertyValueType(IPublishedPropertyType propertyType) {

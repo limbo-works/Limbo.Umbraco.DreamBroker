@@ -48,7 +48,7 @@ namespace Limbo.Umbraco.DreamBroker.Controllers {
         /// <param name="channelId">The DreamBroker ID of the channel.</param>
         public object DeleteChannel(string channelId) {
             if (string.IsNullOrWhiteSpace(channelId)) return BadRequest("No channel ID specified.");
-            DreamBrokerChannel channel = _dreamBrokerService.GetChannel(channelId);
+            DreamBrokerChannel? channel = _dreamBrokerService.GetChannel(channelId);
             if (channel == null) return NotFound("Channel not found.");
             _dreamBrokerService.DeleteChannel(channel);
             return Ok();
@@ -65,7 +65,7 @@ namespace Limbo.Umbraco.DreamBroker.Controllers {
         /// Returns a list of videos of the channels added in Umbraco.
         /// </summary>
         /// <param name="text">If specified, only videos matching this parameter will be returned.</param>
-        public object GetVideos(string text = null) {
+        public object GetVideos(string? text = null) {
 
             List<object> channels = new();
 
@@ -103,7 +103,7 @@ namespace Limbo.Umbraco.DreamBroker.Controllers {
             if (string.IsNullOrWhiteSpace(videoId)) return BadRequest("No video ID specified.");
 
             // Get a reference to the channel (if stored in Umbraco)
-            DreamBrokerChannel channel = _dreamBrokerService.GetChannel(channelId);
+            DreamBrokerChannel? channel = _dreamBrokerService.GetChannel(channelId);
 
 
             DreamBrokerChannelDetails channelDetails;
@@ -133,7 +133,7 @@ namespace Limbo.Umbraco.DreamBroker.Controllers {
 
             // As DreamBroker doesn't really have an API, we get all the videos of the channel via their internal API,
             // and then pick the video with the matching ID
-            VideoItem video = _dreamBrokerService.GetChannelVideos(channelId).FirstOrDefault(x => x.VideoId == videoId);
+            VideoItem? video = _dreamBrokerService.GetChannelVideos(channelId).FirstOrDefault(x => x.VideoId == videoId);
             if (video == null) return NotFound("Video not found.");
 
             return new {
@@ -153,7 +153,7 @@ namespace Limbo.Umbraco.DreamBroker.Controllers {
         public string ChannelId { get; }
 
         [JsonProperty("name")]
-        public string Name { get; }
+        public string? Name { get; }
 
         [JsonProperty("exists")]
         public bool Exists { get; }

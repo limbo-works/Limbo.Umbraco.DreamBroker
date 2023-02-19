@@ -42,7 +42,7 @@ namespace Limbo.Umbraco.DreamBroker {
         /// <summary>
         /// Gets the URL of the documentation for this package.
         /// </summary>
-        public const string DocumentationUrl = "https://github.com/limbo-works/Limbo.Umbraco.DreamBroker#documentation";
+        public const string DocumentationUrl = "https://packages.limbo.works/limbo.umbraco.dreambroker/v1/docs/";
 
 
     }

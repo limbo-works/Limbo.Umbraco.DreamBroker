@@ -12,7 +12,7 @@
     <VersionSuffix Condition="'$(Configuration)'=='Debug'">build$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
     <Company>Limbo</Company>
     <Authors>Anders Bjerner</Authors>
-    <Copyright>Copyright © 2022</Copyright>
+    <Copyright>Copyright © 2023</Copyright>
     <Title>Limbo DreamBroker</Title>
     <Description>DreamBroker video picker for Umbraco 9.</Description>
   </PropertyGroup>

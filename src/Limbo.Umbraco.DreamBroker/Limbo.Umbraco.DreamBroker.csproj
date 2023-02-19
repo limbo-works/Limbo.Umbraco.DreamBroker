@@ -33,7 +33,7 @@
 	<PackageReference Include="Limbo.Umbraco.Video" Version="1.0.0-beta001">
 	  <ExcludeAssets>content;build</ExcludeAssets>
 	</PackageReference>
-    <PackageReference Include="Skybrud.Essentials.Http" Version="1.0.16" />
+    <PackageReference Include="Skybrud.Essentials.Http" Version="1.1.4" />
     <PackageReference Include="Umbraco.Cms.Core" Version="[9.0.0,10.0)" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="[9.0.0,10.0)" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[9.0.0,10.0)" />

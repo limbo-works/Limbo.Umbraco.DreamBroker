@@ -5,7 +5,7 @@ using Skybrud.Essentials.Json.Extensions;
 using Skybrud.Essentials.Time;
 
 namespace Limbo.Umbraco.DreamBroker.Models.Channels {
-    
+
     /// <summary>
     /// Class representing a DreamBroker channel as saved in Umbraco.
     /// </summary>

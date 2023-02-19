@@ -2,12 +2,12 @@
 using Limbo.Umbraco.DreamBroker.Models.Channels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json;
 using Skybrud.Essentials.Json.Converters.Time;
-using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Json.Newtonsoft;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
 namespace Limbo.Umbraco.DreamBroker.Models.Videos {
-    
+
     /// <summary>
     /// Class representing a video as received from the DreamBroker API.
     /// </summary>
@@ -20,19 +20,19 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         /// </summary>
         [JsonProperty("videoId")]
         public string VideoId { get; }
-        
+
         /// <summary>
         /// Gets the ID of the parent channel.
         /// </summary>
         [JsonProperty("channelId")]
         public string ChannelId { get; }
-        
+
         /// <summary>
         /// Gets the title of the video.
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; }
-        
+
         /// <summary>
         /// Gets the duration of the video.
         /// </summary>

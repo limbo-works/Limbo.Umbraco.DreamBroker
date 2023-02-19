@@ -7,7 +7,7 @@ using Skybrud.Essentials.Json.Converters.Time;
 using Skybrud.Essentials.Json.Extensions;
 
 namespace Limbo.Umbraco.DreamBroker.Models.Videos {
-    
+
     /// <summary>
     /// Class representing the details if a DreamBroker video.
     /// </summary>
@@ -20,7 +20,7 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         /// </summary>
         [JsonProperty("videoId")]
         public string VideoId { get; }
-        
+
         /// <summary>
         /// Gets the DreamBroker ID of the channel.
         /// </summary>
@@ -53,7 +53,7 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         public DreamBrokerThumbnail[] Thumbnails { get; }
 
         IEnumerable<IVideoThumbnail> IVideoDetails.Thumbnails => Thumbnails;
-        
+
         /// <summary>
         /// Gets an array with the files of the video. This will currently always be empty.
         /// </summary>

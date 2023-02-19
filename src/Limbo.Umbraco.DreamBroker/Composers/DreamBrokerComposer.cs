@@ -7,7 +7,7 @@ using Umbraco.Cms.Core.DependencyInjection;
 #pragma warning disable 1591
 
 namespace Limbo.Umbraco.DreamBroker.Composers {
-    
+
     public class DreamBrokerComposer : IComposer {
 
         public void Compose(IUmbracoBuilder builder) {

@@ -6,18 +6,18 @@ using Limbo.Umbraco.DreamBroker.Models.Videos;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Collections;
-using Skybrud.Essentials.Json;
-using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Json.Newtonsoft;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Essentials.Time;
 using Umbraco.Cms.Core.Services;
 
 namespace Limbo.Umbraco.DreamBroker.Services {
-    
+
     /// <summary>
     /// Service for working with the DreamBroker integration.
     /// </summary>
     public class DreamBrokerService {
-        
+
         private readonly IKeyValueService _keyValueService;
 
         #region Constructors
@@ -127,7 +127,7 @@ namespace Limbo.Umbraco.DreamBroker.Services {
         /// <param name="videoId">The ID of the video.</param>
         /// <returns>An instance of <see cref="DreamBrokerOEmbed"/>.</returns>
         public DreamBrokerOEmbed GetOEmbed(string channelId, string videoId) {
-            
+
             // Input validation
             if (string.IsNullOrWhiteSpace(channelId)) throw new ArgumentNullException(nameof(channelId));
             if (string.IsNullOrWhiteSpace(videoId)) throw new ArgumentNullException(nameof(videoId));

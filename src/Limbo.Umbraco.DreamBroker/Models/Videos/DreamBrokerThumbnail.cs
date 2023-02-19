@@ -2,7 +2,7 @@
 using Limbo.Umbraco.Video.Models.Videos;
 
 namespace Limbo.Umbraco.DreamBroker.Models.Videos {
-    
+
     /// <summary>
     /// Class representing a DreamBroker thumbnail.
     /// </summary>
@@ -72,7 +72,7 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
             string url = $"https://dreambroker.com/channel/{channelId}/{videoId}/get/poster/{width}x{height}.jpg{(crop ? "?crop=true" : "")}";
             return new DreamBrokerThumbnail(width, height, url);
         }
-        
+
         /// <summary>
         /// Creates a new thumbnail based on the specified <paramref name="video"/>.
         /// </summary>
@@ -85,7 +85,7 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
             if (video == null) throw new ArgumentNullException(nameof(video));
             return Create(video.ChannelId, video.VideoId, width, height, crop);
         }
-        
+
         /// <summary>
         /// Creates a new thumbnail based on the specified <paramref name="value"/>.
         /// </summary>

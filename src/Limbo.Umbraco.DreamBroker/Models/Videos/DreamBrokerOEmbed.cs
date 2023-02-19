@@ -2,7 +2,7 @@
 using Skybrud.Essentials.Json.Extensions;
 
 namespace Limbo.Umbraco.DreamBroker.Models.Videos {
-    
+
     /// <summary>
     /// Class representing the OEmbed value returned by the DreamBroker API.
     /// </summary>
@@ -29,7 +29,7 @@ namespace Limbo.Umbraco.DreamBroker.Models.Videos {
         /// Gets the width of the video's thumbnail.
         /// </summary>
         public int ThumbnailWidth { get; }
-        
+
         /// <summary>
         /// Gets the height of the video's thumbnail.
         /// </summary>

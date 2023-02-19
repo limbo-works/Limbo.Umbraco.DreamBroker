@@ -15,10 +15,10 @@ using Umbraco.Extensions;
 #pragma warning disable 1591
 
 namespace Limbo.Umbraco.DreamBroker.Controllers {
-    
+
     [PluginController("Limbo")]
     public class DreamBrokerController : UmbracoAuthorizedApiController {
-        
+
         private readonly DreamBrokerService _dreamBrokerService;
 
         #region Constructors
@@ -66,7 +66,7 @@ namespace Limbo.Umbraco.DreamBroker.Controllers {
         /// </summary>
         /// <param name="text">If specified, only videos matching this parameter will be returned.</param>
         public object GetVideos(string text = null) {
-            
+
             List<object> channels = new();
 
             // Iterate through the channels added to Umbraco
@@ -85,7 +85,7 @@ namespace Limbo.Umbraco.DreamBroker.Controllers {
                 });
 
             }
-            
+
             return new {
                 channels
             };
@@ -98,7 +98,7 @@ namespace Limbo.Umbraco.DreamBroker.Controllers {
         /// <param name="channelId">The ID of the channel.</param>
         /// <param name="videoId">The ID of the video.</param>
         public object GetVideo(string channelId, string videoId) {
-            
+
             if (string.IsNullOrWhiteSpace(channelId)) return BadRequest("No channel ID specified.");
             if (string.IsNullOrWhiteSpace(videoId)) return BadRequest("No video ID specified.");
 
@@ -109,7 +109,7 @@ namespace Limbo.Umbraco.DreamBroker.Controllers {
             DreamBrokerChannelDetails channelDetails;
 
             if (channel == null) {
-                
+
                 channelDetails = new DreamBrokerChannelDetails(channelId);
 
                 try {
@@ -128,7 +128,7 @@ namespace Limbo.Umbraco.DreamBroker.Controllers {
             }
 
 
-            
+
 
 
             // As DreamBroker doesn't really have an API, we get all the videos of the channel via their internal API,
@@ -151,10 +151,10 @@ namespace Limbo.Umbraco.DreamBroker.Controllers {
 
         [JsonProperty("channelId")]
         public string ChannelId { get; }
-        
+
         [JsonProperty("name")]
         public string Name { get; }
-        
+
         [JsonProperty("exists")]
         public bool Exists { get; }
 

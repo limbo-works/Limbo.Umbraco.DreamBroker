@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Html;
 using Newtonsoft.Json;
 
 namespace Limbo.Umbraco.DreamBroker.Models.Videos {
-    
+
     /// <summary>
     /// Class representing the embed options of the video.
     /// </summary>

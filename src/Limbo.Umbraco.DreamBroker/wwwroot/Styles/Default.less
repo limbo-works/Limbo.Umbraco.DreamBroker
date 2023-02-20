@@ -19,7 +19,7 @@
     &.loading > div {
         opacity: 0.5;
     }
-    
+
     input {
         width: 100%;
         flex: 1;
@@ -34,8 +34,21 @@
     }
 
     &-details {
-        display: flex;
         margin-top: 10px;
+
+        > h5 {
+            margin: 15px 0 3px 0;
+        }
+
+        > div {
+            display: flex;
+            border: 1px solid #e9e9eb;
+            border-radius: 3px;
+            padding: 12px 15px;
+            max-width: 800px;
+            box-sizing: border-box;
+        }
+
         img {
             margin-right: 10px;
         }
@@ -94,7 +107,7 @@
             text-align: left;
             padding: 0;
         }
-    
+
     }
 
 }

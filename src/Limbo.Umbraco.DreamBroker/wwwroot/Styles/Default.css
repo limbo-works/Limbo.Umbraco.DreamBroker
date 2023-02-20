@@ -23,8 +23,18 @@
   margin-left: 7px;
 }
 .dreambroker-video-details {
-  display: flex;
   margin-top: 10px;
+}
+.dreambroker-video-details > h5 {
+  margin: 15px 0 3px 0;
+}
+.dreambroker-video-details > div {
+  display: flex;
+  border: 1px solid #e9e9eb;
+  border-radius: 3px;
+  padding: 12px 15px;
+  max-width: 800px;
+  box-sizing: border-box;
 }
 .dreambroker-video-details img {
   margin-right: 10px;

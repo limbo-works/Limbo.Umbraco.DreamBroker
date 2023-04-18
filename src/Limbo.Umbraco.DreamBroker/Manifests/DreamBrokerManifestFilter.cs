@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Skybrud.Essentials.Strings.Extensions;
 using Umbraco.Cms.Core.Manifest;
 
 namespace Limbo.Umbraco.DreamBroker.Manifests {
@@ -10,7 +9,9 @@ namespace Limbo.Umbraco.DreamBroker.Manifests {
         /// <inheritdoc />
         public void Filter(List<PackageManifest> manifests) {
             manifests.Add(new PackageManifest {
-                PackageName = DreamBrokerPackage.Alias.ToKebabCase(),
+                AllowPackageTelemetry = true,
+                PackageName = DreamBrokerPackage.Name,
+                Version = DreamBrokerPackage.InformationalVersion,
                 BundleOptions = BundleOptions.Independent,
                 Scripts = new[] {
                     $"/App_Plugins/{DreamBrokerPackage.Alias}/Scripts/Services/DreamBrokerService.js",

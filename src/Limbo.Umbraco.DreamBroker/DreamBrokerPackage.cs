@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Skybrud.Essentials.Reflection;
 using Umbraco.Cms.Core.Semver;
 
@@ -23,6 +24,11 @@ namespace Limbo.Umbraco.DreamBroker {
         /// Gets the version of the package.
         /// </summary>
         public static readonly Version Version = typeof(DreamBrokerPackage).Assembly.GetName().Version!;
+
+        /// <summary>
+        /// Gets the information version of the package.
+        /// </summary>
+        public static readonly string InformationalVersion = FileVersionInfo.GetVersionInfo(typeof(DreamBrokerPackage).Assembly.Location).ProductVersion!;
 
         /// <summary>
         /// Gets the semantic version of the package.

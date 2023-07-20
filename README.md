@@ -2,21 +2,51 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/v/Limbo.Umbraco.DreamBroker.svg)](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker) [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.DreamBroker.svg)](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker) [![Our Umbraco](https://img.shields.io/badge/our-umbraco-%233544B1)](https://our.umbraco.com/packages/backoffice-extensions/limbo-dreambroker/) [![Umbraco Marketplace](https://img.shields.io/badge/umbraco-marketplace-%233544B1)](https://marketplace.umbraco.com/package/limbo.umbraco.dreambroker)
 
-This package features a property editor for inserting (via URL) or selecting a Dream Broker video. The property editor saves a bit of information about the video, which then will be availble in C#.
+**Limbo.Umbraco.DreamBroker** is a package for Umbraco 10+ that features a property editor for inserting (via URL) or selecting a Dream Broker video. The property editor saves a bit of information about the video, which then will be availble in C#.
+
+<table>
+  <tr>
+    <td><strong>License:</strong></td>
+    <td><a href="./LICENSE.md"><strong>MIT License</strong></a></td>
+  </tr>
+  <tr>
+    <td><strong>Umbraco:</strong></td>
+    <td>Umbraco 10, 11 and 12</td>
+  </tr>
+  <tr>
+    <td><strong>Target Framework:</strong></td>
+    <td>.NET 6</td>
+  </tr>
+</table>
+
+
+
+
+<br /><br />
 
 ## Installation
 
-Install for Umbraco 10+ via [NuGet](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/2.0.2):
+The package targets Umbraco 10+ and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/2.0.3). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.DreamBroker --version 2.0.2
+dotnet add package Limbo.Umbraco.DreamBroker --version 2.0.3
 ```
+
+or the NuGet Package Manager:
+
+```
+Install-Package Limbo.Umbraco.DreamBroker -Version 2.0.3
+```
+
+
+
+<br /><br />
 
 ## Configuration
 
 ### Authentication
 
-DreamBroker doesn't have a public API, but relies on more or less undocumented endpoints, and as such doesn't require any authentication.
+DreamBroker doesn't have a public API, but relies on more or less undocumented endpoints that exposes already public data, and as such doesn't require any authentication.
 
 ### Channels
 

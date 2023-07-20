@@ -4,7 +4,7 @@
 
 **Limbo.Umbraco.DreamBroker** is a package for Umbraco 10+ that features a property editor for inserting (via URL) or selecting a Dream Broker video. The property editor saves a bit of information about the video, which then will be availble in C#.
 
-The latest version ([`v2.x`](https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/tree/v1/main)) supports Umbraco 10, 11 and 12, whereas older releases ([`v1.x`](https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/tree/v1/main)) supports Umbraco 9.
+The latest version (`v2.x`) supports Umbraco 10, 11 and 12, whereas older releases (`v1.x`) supports Umbraco 9.
 
 <table>
   <tr>
@@ -39,6 +39,10 @@ or the NuGet Package Manager:
 ```
 Install-Package Limbo.Umbraco.DreamBroker -Version 2.0.3
 ```
+
+For Umbraco 9, see the [`v1/main`](https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/tree/v1/main) branch instead.
+
+
 
 
 

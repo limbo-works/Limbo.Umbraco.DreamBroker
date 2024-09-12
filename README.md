@@ -1,6 +1,10 @@
 # Limbo DreamBroker
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/v/Limbo.Umbraco.DreamBroker.svg)](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker) [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.DreamBroker.svg)](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker) [![Our Umbraco](https://img.shields.io/badge/our-umbraco-%233544B1)](https://our.umbraco.com/packages/backoffice-extensions/limbo-dreambroker/) [![Umbraco Marketplace](https://img.shields.io/badge/umbraco-marketplace-%233544B1)](https://marketplace.umbraco.com/package/limbo.umbraco.dreambroker)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/blob/v2/main/LICENSE.md)
+[![NuGet](https://img.shields.io/nuget/v/Limbo.Umbraco.DreamBroker.svg)](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker)
+[![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.DreamBroker.svg)](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker)
+[![Our Umbraco](https://img.shields.io/badge/our-umbraco-%233544B1)](https://our.umbraco.com/packages/backoffice-extensions/limbo-dreambroker/)
+[![Umbraco Marketplace](https://img.shields.io/badge/umbraco-marketplace-%233544B1)](https://marketplace.umbraco.com/package/limbo.umbraco.dreambroker)
 
 **Limbo.Umbraco.DreamBroker** is a package for Umbraco 10+ that features a property editor for inserting (via URL) or selecting a Dream Broker video. The property editor saves a bit of information about the video, which then will be availble in C#.
 
@@ -28,16 +32,16 @@ The latest version (`v2.x`) supports Umbraco 10, 11 and 12, whereas older releas
 
 ## Installation
 
-The package targets Umbraco 10+ and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/2.0.3). To install the package, you can use either .NET CLI:
+The package targets Umbraco 10+ and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/2.0.4). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.DreamBroker --version 2.0.3
+dotnet add package Limbo.Umbraco.DreamBroker --version 2.0.4
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.DreamBroker -Version 2.0.3
+Install-Package Limbo.Umbraco.DreamBroker -Version 2.0.4
 ```
 
 For Umbraco 9, see the [`v1/main`](https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/tree/v1/main) branch instead.

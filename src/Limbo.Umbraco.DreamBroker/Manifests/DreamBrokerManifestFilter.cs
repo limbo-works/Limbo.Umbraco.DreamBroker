@@ -16,14 +16,14 @@ public class DreamBrokerManifestFilter : IManifestFilter {
             PackageName = DreamBrokerPackage.Name,
             Version = DreamBrokerPackage.InformationalVersion,
             BundleOptions = BundleOptions.Independent,
-            Scripts = new[] {
+            Scripts = [
                 $"/App_Plugins/{DreamBrokerPackage.Alias}/Scripts/Services/DreamBrokerService.js",
                 $"/App_Plugins/{DreamBrokerPackage.Alias}/Scripts/Controllers/Video.js",
                 $"/App_Plugins/{DreamBrokerPackage.Alias}/Scripts/Controllers/VideoOverlay.js"
-            },
-            Stylesheets = new [] {
+            ],
+            Stylesheets = [
                 $"/App_Plugins/{DreamBrokerPackage.Alias}/Styles/Default.css"
-            }
+            ]
         };
 
         // The "PackageId" property isn't available prior to Umbraco 12, and since the package is build against

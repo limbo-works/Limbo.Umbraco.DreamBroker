@@ -71,10 +71,10 @@ public class DreamBrokerVideoDetails : IVideoDetails {
         Url = $"https://www.dreambroker.com/channel/{ChannelId}/{VideoId}";
         Title = json.GetString("title")!;
         Duration = json.GetDouble("duration", TimeSpan.FromSeconds);
-        Thumbnails = new[] {
+        Thumbnails = [
             DreamBrokerThumbnail.Create(this, 470, 264, true)
-        };
-        Files = Array.Empty<IVideoFile>();
+        ];
+        Files = [];
     }
 
     #endregion

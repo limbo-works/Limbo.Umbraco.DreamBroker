@@ -67,7 +67,7 @@ public class DreamBrokerController : UmbracoAuthorizedApiController {
     /// <param name="text">If specified, only videos matching this parameter will be returned.</param>
     public object GetVideos(string? text = null) {
 
-        List<object> channels = new();
+        List<object> channels = [];
 
         // Iterate through the channels added to Umbraco
         foreach (DreamBrokerChannel channnel in _dreamBrokerService.GetChannels()) {

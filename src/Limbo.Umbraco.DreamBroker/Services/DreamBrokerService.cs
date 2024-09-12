@@ -83,7 +83,7 @@ public class DreamBrokerService {
         return _keyValueService
             .FindByKeyPrefix("Limbo.Umbraco.DreamBroker.Channels.")?.Values
             .Select(x => JsonUtils.ParseJsonObject(x!, DreamBrokerChannel.Parse)!)
-            .ToArray() ?? Array.Empty<DreamBrokerChannel>();
+            .ToArray() ?? [];
     }
 
     /// <summary>

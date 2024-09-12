@@ -11,12 +11,12 @@ using Umbraco.Extensions;
 namespace Limbo.Umbraco.DreamBroker.PropertyEditors;
 
 /// <summary>
-/// Property value converter for <see cref="DreamBrokerEditor"/>.
+/// Property value converter for <see cref="DreamBrokerVideoEditor"/>.
 /// </summary>
-public class DreamBrokerValueConverter : PropertyValueConverterBase {
+public class DreamBrokerVideoValueConverter : PropertyValueConverterBase {
 
     public override bool IsConverter(IPublishedPropertyType propertyType) {
-        return propertyType.EditorAlias == DreamBrokerEditor.EditorAlias;
+        return propertyType.EditorAlias == DreamBrokerVideoEditor.EditorAlias;
     }
 
     public override object? ConvertSourceToIntermediate(IPublishedElement owner, IPublishedPropertyType propertyType, object? source, bool preview) {
@@ -24,11 +24,11 @@ public class DreamBrokerValueConverter : PropertyValueConverterBase {
     }
 
     public override object? ConvertIntermediateToObject(IPublishedElement owner, IPublishedPropertyType propertyType, PropertyCacheLevel referenceCacheLevel, object? inter, bool preview) {
-        return DreamBrokerValue.Parse(inter as JObject);
+        return DreamBrokerVideoValue.Parse(inter as JObject);
     }
 
     public override Type GetPropertyValueType(IPublishedPropertyType propertyType) {
-        return typeof(DreamBrokerValue);
+        return typeof(DreamBrokerVideoValue);
     }
 
     public override PropertyCacheLevel GetPropertyCacheLevel(IPublishedPropertyType propertyType) {

@@ -9,9 +9,9 @@ using Skybrud.Essentials.Json.Extensions;
 namespace Limbo.Umbraco.DreamBroker.Models.Videos;
 
 /// <summary>
-/// Class representing the value of a <see cref="DreamBrokerEditor"/> property editor.
+/// Class representing the value of a <see cref="DreamBrokerVideoEditor"/> property editor.
 /// </summary>
-public class DreamBrokerValue : IVideoValue {
+public class DreamBrokerVideoValue : IVideoValue {
 
     #region Properties
 
@@ -49,7 +49,7 @@ public class DreamBrokerValue : IVideoValue {
 
     #region Constructors
 
-    private DreamBrokerValue(JObject json) {
+    private DreamBrokerVideoValue(JObject json) {
         Source = json.GetString("source") ?? json.GetString("url")!;
         Provider = DreamBrokerVideoProvider.Default;
         Details = json.GetObject("details", DreamBrokerVideoDetails.Parse) ?? json.GetObject("video", DreamBrokerVideoDetails.Parse)!;
@@ -61,8 +61,8 @@ public class DreamBrokerValue : IVideoValue {
     #region Static methods
 
     [return: NotNullIfNotNull(nameof(json))]
-    internal static DreamBrokerValue? Parse(JObject? json) {
-        return json == null ? null : new DreamBrokerValue(json);
+    internal static DreamBrokerVideoValue? Parse(JObject? json) {
+        return json == null ? null : new DreamBrokerVideoValue(json);
     }
 
     #endregion

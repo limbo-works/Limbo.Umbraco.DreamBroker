@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using Limbo.Umbraco.DreamBroker.Models.Channels;
@@ -76,10 +77,10 @@ public class DreamBrokerService {
     }
 
     /// <summary>
-    /// Returns an array of the DreamBroker channels added in Umbraco.
+    /// Returns a list of the DreamBroker channels added in Umbraco.
     /// </summary>
-    /// <returns>An array of <see cref="DreamBrokerChannel"/>.</returns>
-    public DreamBrokerChannel[] GetChannels() {
+    /// <returns>A list of <see cref="DreamBrokerChannel"/>.</returns>
+    public IReadOnlyList<DreamBrokerChannel> GetChannels() {
         return _keyValueService
             .FindByKeyPrefix("Limbo.Umbraco.DreamBroker.Channels.")?.Values
             .Select(x => JsonUtils.ParseJsonObject(x!, DreamBrokerChannel.Parse)!)
@@ -90,8 +91,8 @@ public class DreamBrokerService {
     /// Returns a list of videos of the channel matching the specified <paramref name="channelId"/>.
     /// </summary>
     /// <param name="channelId">The ID of the channel.</param>
-    /// <returns>An array of <see cref="VideoItem"/>.</returns>
-    public VideoItem[] GetChannelVideos(string channelId) {
+    /// <returns>A list of <see cref="VideoItem"/>.</returns>
+    public IReadOnlyList<VideoItem> GetChannelVideos(string channelId) {
 
         // Validate the input
         if (string.IsNullOrWhiteSpace(channelId)) throw new ArgumentNullException(nameof(channelId));
@@ -112,8 +113,8 @@ public class DreamBrokerService {
     /// Returns a list of videos of the specified <paramref name="channel"/>.
     /// </summary>
     /// <param name="channel">The channel.</param>
-    /// <returns>An array of <see cref="VideoItem"/>.</returns>
-    public VideoItem[] GetChannelVideos(DreamBrokerChannel channel) {
+    /// <returns>A list of <see cref="VideoItem"/>.</returns>
+    public IReadOnlyList<VideoItem> GetChannelVideos(DreamBrokerChannel channel) {
         if (channel == null) throw new ArgumentNullException(nameof(channel));
         return GetChannelVideos(channel.ChannelId);
     }

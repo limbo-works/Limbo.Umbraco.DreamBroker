@@ -89,12 +89,12 @@ public class DreamBrokerThumbnail : IVideoThumbnail {
     /// <summary>
     /// Creates a new thumbnail based on the specified <paramref name="value"/>.
     /// </summary>
-    /// <param name="value">The instance of <see cref="DreamBrokerValue"/> the thumbnail should be based on.</param>
+    /// <param name="value">The instance of <see cref="DreamBrokerVideoValue"/> the thumbnail should be based on.</param>
     /// <param name="width">The width of the thumbnail.</param>
     /// <param name="height">The height of the thumbnail.</param>
     /// <param name="crop">Whether the thumbnail should be cropped if it doesn't match the aspect ratio of the video.</param>
     /// <returns>An instance of <see cref="DreamBrokerThumbnail"/>.</returns>
-    public static DreamBrokerThumbnail Create(DreamBrokerValue value, int width, int height, bool crop) {
+    public static DreamBrokerThumbnail Create(DreamBrokerVideoValue value, int width, int height, bool crop) {
         if (value == null) throw new ArgumentNullException(nameof(value));
         return Create(value.Details, width, height, crop);
     }

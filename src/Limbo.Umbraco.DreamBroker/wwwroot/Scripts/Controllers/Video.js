@@ -84,6 +84,9 @@
 
     function init() {
 
+        if (!$scope.model.config) $scope.model.config = {};
+        $scope.model.hideLabel = $scope.model.config.hideLabel === true;
+
         if ($scope.model.value) {
 
             // Fix "legacy" values

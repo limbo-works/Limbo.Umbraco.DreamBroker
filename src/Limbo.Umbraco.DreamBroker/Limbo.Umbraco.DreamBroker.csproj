@@ -32,8 +32,8 @@
 
   <!-- Include NuGet dependencies -->
   <ItemGroup>
-    <PackageReference Include="Limbo.Umbraco.Video" Version="2.0.6" />
-    <PackageReference Include="Skybrud.Essentials.Http" Version="1.1.4" />
+    <PackageReference Include="Limbo.Umbraco.Video" Version="2.0.7" />
+    <PackageReference Include="Skybrud.Essentials.Http" Version="1.2.0" />
     <PackageReference Include="Umbraco.Cms.Core" Version="[10.0.0,12.999)" />
     <PackageReference Include="Umbraco.Cms.Web.Website" Version="[10.0.0,12.999)" />
     <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[10.0.0,12.999)" />

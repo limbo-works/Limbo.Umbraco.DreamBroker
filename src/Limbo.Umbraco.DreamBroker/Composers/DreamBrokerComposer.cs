@@ -6,15 +6,13 @@ using Umbraco.Cms.Core.DependencyInjection;
 
 #pragma warning disable 1591
 
-namespace Limbo.Umbraco.DreamBroker.Composers {
+namespace Limbo.Umbraco.DreamBroker.Composers;
 
-    public class DreamBrokerComposer : IComposer {
+public class DreamBrokerComposer : IComposer {
 
-        public void Compose(IUmbracoBuilder builder) {
-            builder.Services.AddTransient<DreamBrokerService>();
-            builder.ManifestFilters().Append<DreamBrokerManifestFilter>();
-        }
-
+    public void Compose(IUmbracoBuilder builder) {
+        builder.Services.AddTransient<DreamBrokerService>();
+        builder.ManifestFilters().Append<DreamBrokerManifestFilter>();
     }
 
 }

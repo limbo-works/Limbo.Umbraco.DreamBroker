@@ -1,19 +1,17 @@
 ﻿using Limbo.Umbraco.Video.Models.Providers;
 
-namespace Limbo.Umbraco.DreamBroker.Models.Videos {
+namespace Limbo.Umbraco.DreamBroker.Models.Videos;
+
+/// <summary>
+/// Class with limited information about a video provider.
+/// </summary>
+public class DreamBrokerVideoProvider : VideoProvider {
 
     /// <summary>
-    /// Class with limited information about a video provider.
+    /// Gets a reference to a <see cref="DreamBrokerVideoProvider"/> instance.
     /// </summary>
-    public class DreamBrokerVideoProvider : VideoProvider {
+    public static readonly DreamBrokerVideoProvider Default = new();
 
-        /// <summary>
-        /// Gets a reference to a <see cref="DreamBrokerVideoProvider"/> instance.
-        /// </summary>
-        public static readonly DreamBrokerVideoProvider Default = new();
-
-        private DreamBrokerVideoProvider() : base("dreambroker", "DreamBroker") { }
-
-    }
+    private DreamBrokerVideoProvider() : base("dreambroker", "DreamBroker") { }
 
 }

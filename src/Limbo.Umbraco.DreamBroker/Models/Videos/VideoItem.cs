@@ -7,67 +7,65 @@ using Skybrud.Essentials.Json.Converters.Time;
 using Skybrud.Essentials.Json.Newtonsoft;
 using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
-namespace Limbo.Umbraco.DreamBroker.Models.Videos {
+namespace Limbo.Umbraco.DreamBroker.Models.Videos;
+
+/// <summary>
+/// Class representing a video as received from the DreamBroker API.
+/// </summary>
+public class VideoItem : JsonObjectBase {
+
+    #region Properties
 
     /// <summary>
-    /// Class representing a video as received from the DreamBroker API.
+    /// Gets the ID of the video.
     /// </summary>
-    public class VideoItem : JsonObjectBase {
+    [JsonProperty("videoId")]
+    public string VideoId { get; }
 
-        #region Properties
+    /// <summary>
+    /// Gets the ID of the parent channel.
+    /// </summary>
+    [JsonProperty("channelId")]
+    public string ChannelId { get; }
 
-        /// <summary>
-        /// Gets the ID of the video.
-        /// </summary>
-        [JsonProperty("videoId")]
-        public string VideoId { get; }
+    /// <summary>
+    /// Gets the title of the video.
+    /// </summary>
+    [JsonProperty("title")]
+    public string Title { get; }
 
-        /// <summary>
-        /// Gets the ID of the parent channel.
-        /// </summary>
-        [JsonProperty("channelId")]
-        public string ChannelId { get; }
+    /// <summary>
+    /// Gets the duration of the video.
+    /// </summary>
+    [JsonProperty("duration")]
+    [JsonConverter(typeof(TimeSpanSecondsConverter))]
+    public TimeSpan Duration { get; }
 
-        /// <summary>
-        /// Gets the title of the video.
-        /// </summary>
-        [JsonProperty("title")]
-        public string Title { get; }
+    #endregion
 
-        /// <summary>
-        /// Gets the duration of the video.
-        /// </summary>
-        [JsonProperty("duration")]
-        [JsonConverter(typeof(TimeSpanSecondsConverter))]
-        public TimeSpan Duration { get; }
+    #region Constructors
 
-        #endregion
-
-        #region Constructors
-
-        private VideoItem(string channelId, JObject json) : base(json) {
-            Title = json.GetString("title")!;
-            VideoId = json.GetString("relativePath")!;
-            ChannelId = channelId;
-            Duration = json.GetDouble("duration", TimeSpan.FromMilliseconds);
-        }
-
-        #endregion
-
-        #region Static methods
-
-        [return: NotNullIfNotNull("json")]
-        internal static VideoItem? Parse(string channelId, JObject? json) {
-            return json == null ? null : new VideoItem(channelId, json);
-        }
-
-        [return: NotNullIfNotNull("json")]
-        internal static VideoItem? Parse(DreamBrokerChannel channel, JObject? json) {
-            return json == null ? null : new VideoItem(channel.ChannelId, json);
-        }
-
-        #endregion
-
+    private VideoItem(string channelId, JObject json) : base(json) {
+        Title = json.GetString("title")!;
+        VideoId = json.GetString("relativePath")!;
+        ChannelId = channelId;
+        Duration = json.GetDouble("duration", TimeSpan.FromMilliseconds);
     }
+
+    #endregion
+
+    #region Static methods
+
+    [return: NotNullIfNotNull("json")]
+    internal static VideoItem? Parse(string channelId, JObject? json) {
+        return json == null ? null : new VideoItem(channelId, json);
+    }
+
+    [return: NotNullIfNotNull("json")]
+    internal static VideoItem? Parse(DreamBrokerChannel channel, JObject? json) {
+        return json == null ? null : new VideoItem(channel.ChannelId, json);
+    }
+
+    #endregion
 
 }

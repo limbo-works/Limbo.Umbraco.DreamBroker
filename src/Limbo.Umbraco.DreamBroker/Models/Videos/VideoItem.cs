@@ -56,12 +56,12 @@ public class VideoItem : JsonObjectBase {
 
     #region Static methods
 
-    [return: NotNullIfNotNull("json")]
+    [return: NotNullIfNotNull(nameof(json))]
     internal static VideoItem? Parse(string channelId, JObject? json) {
         return json == null ? null : new VideoItem(channelId, json);
     }
 
-    [return: NotNullIfNotNull("json")]
+    [return: NotNullIfNotNull(nameof(json))]
     internal static VideoItem? Parse(DreamBrokerChannel channel, JObject? json) {
         return json == null ? null : new VideoItem(channel.ChannelId, json);
     }

@@ -68,7 +68,7 @@ public class DreamBrokerChannel {
 
     #region Static methods
 
-    [return: NotNullIfNotNull("json")]
+    [return: NotNullIfNotNull(nameof(json))]
     internal static DreamBrokerChannel? Parse(JObject? json) {
         return json == null ? null : new DreamBrokerChannel(json);
     }

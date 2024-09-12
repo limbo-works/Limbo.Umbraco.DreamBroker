@@ -52,7 +52,7 @@ public class DreamBrokerOEmbed {
 
     #region Static methods
 
-    [return: NotNullIfNotNull("json")]
+    [return: NotNullIfNotNull(nameof(json))]
     internal static DreamBrokerOEmbed? Parse(JObject? json) {
         return json == null ? null : new DreamBrokerOEmbed(json);
     }

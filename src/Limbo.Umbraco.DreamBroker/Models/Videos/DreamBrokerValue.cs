@@ -60,7 +60,7 @@ public class DreamBrokerValue : IVideoValue {
 
     #region Static methods
 
-    [return: NotNullIfNotNull("json")]
+    [return: NotNullIfNotNull(nameof(json))]
     internal static DreamBrokerValue? Parse(JObject? json) {
         return json == null ? null : new DreamBrokerValue(json);
     }

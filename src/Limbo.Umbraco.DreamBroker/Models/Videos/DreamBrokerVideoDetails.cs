@@ -72,8 +72,8 @@ public class DreamBrokerVideoDetails : IVideoDetails {
         Title = json.GetString("title")!;
         Duration = json.GetDouble("duration", TimeSpan.FromSeconds);
         Thumbnails = new[] {
-                DreamBrokerThumbnail.Create(this, 470, 264, true)
-            };
+            DreamBrokerThumbnail.Create(this, 470, 264, true)
+        };
         Files = Array.Empty<IVideoFile>();
     }
 
@@ -81,7 +81,7 @@ public class DreamBrokerVideoDetails : IVideoDetails {
 
     #region Static methods
 
-    [return: NotNullIfNotNull("json")]
+    [return: NotNullIfNotNull(nameof(json))]
     internal static DreamBrokerVideoDetails? Parse(JObject? json) {
         return json == null ? null : new DreamBrokerVideoDetails(json);
     }

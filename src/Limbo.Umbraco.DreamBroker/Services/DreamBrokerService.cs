@@ -4,11 +4,14 @@ using System.Linq;
 using System.Net;
 using Limbo.Umbraco.DreamBroker.Models.Channels;
 using Limbo.Umbraco.DreamBroker.Models.Videos;
+using Limbo.Umbraco.DreamBroker.Models.Videos.Intermediary;
+using Limbo.Umbraco.DreamBroker.PropertyEditors;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Collections;
 using Skybrud.Essentials.Json.Newtonsoft;
 using Skybrud.Essentials.Json.Newtonsoft.Extensions;
+using Skybrud.Essentials.Strings;
 using Skybrud.Essentials.Time;
 using Umbraco.Cms.Core.Services;
 
@@ -147,6 +150,19 @@ public class DreamBrokerService {
         // Parse the response body
         return JsonUtils.ParseJsonObject(response.Body, DreamBrokerOEmbed.Parse)!;
 
+    }
+
+    /// <summary>
+    /// Returns an instance of <see cref="DreamBrokerIntermediaryVideoValue"/> representing the property value as saved by <see cref="DreamBrokerVideoEditor"/>.
+    /// </summary>
+    /// <param name="source">The Dream Broker video URL.</param>
+    /// <returns>An instance of <see cref="DreamBrokerIntermediaryVideoValue"/> representing the video.</returns>
+    public virtual DreamBrokerIntermediaryVideoValue GetIntermediaryVideoValueFromSource(string? source) {
+        if (string.IsNullOrWhiteSpace(source)) throw new ArgumentNullException(nameof(source));
+        if (!Uri.TryCreate(source, UriKind.Absolute, out Uri? result)) throw new Exception("Invalid Dreambroker source.");
+        if (result.Host != "dreambroker.com") throw new Exception("Invalid Dreambroker URL.");
+        if (!RegexUtils.IsMatch(result.AbsolutePath, "^/channel/([a-z0-9]+)/([a-z0-9]+)$", out string? result1, out string? videoId)) throw new Exception("Invalid Dreambroker URL.");
+        return new DreamBrokerIntermediaryVideoValue(source, GetChannelVideos(result1).FirstOrDefault(x => x.VideoId == videoId) ?? throw new Exception($"DreamBroker video with ID '{videoId}' not found."));
     }
 
     #endregion

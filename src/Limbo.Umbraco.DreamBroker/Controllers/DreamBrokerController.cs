@@ -5,8 +5,12 @@ using System.Text.RegularExpressions;
 using Limbo.Umbraco.DreamBroker.Models.Channels;
 using Limbo.Umbraco.DreamBroker.Models.Videos;
 using Limbo.Umbraco.DreamBroker.Services;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Skybrud.Essentials.Http;
+using Skybrud.Essentials.Json.Newtonsoft;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 using Skybrud.Essentials.Strings;
 using Umbraco.Cms.Web.BackOffice.Controllers;
 using Umbraco.Cms.Web.Common.Attributes;
@@ -59,6 +63,37 @@ public class DreamBrokerController : UmbracoAuthorizedApiController {
     /// </summary>
     public object GetChannels() {
         return _dreamBrokerService.GetChannels();
+    }
+
+    [Route("umbraco/backoffice/limbo/dreambroker/channels/{channelId}")]
+    public object GetChannel(string channelId) {
+
+        if (string.IsNullOrWhiteSpace(channelId)) return BadRequest("No channel ID specified.");
+        if (!StringUtils.IsAlphanumeric(channelId)) return BadRequest("Invalid channel ID specified.");
+
+        IHttpResponse response = HttpUtils.Requests.Get($"https://dreambroker.com/channel/{channelId}.json");
+        if (response.StatusCode is HttpStatusCode.NotFound) return NotFound("Channel not found.");
+
+        string contentType = response.ContentType.Split(';')[0];
+
+        // The API currently doesn't return a 404 if the channel is not found, but instead shows an HTML page with a
+        // 200 OK status code. So if the content type "text/html", it's very likely because the channel wasn't found
+        if (contentType is "text/html") return NotFound("Channel not found.");
+
+        JObject json = JsonUtils.ParseJsonObject(response.Body);
+
+        string? title = json.GetString("titldde");
+        string? description = json.GetString("description");
+
+        if (string.IsNullOrWhiteSpace(title)) return Problem(statusCode: 500, detail: "Helloooo");
+
+        return new {
+            id = channelId,
+            title,
+            description,
+            videoCount = json.GetArrayItems("items").Length
+        };
+
     }
 
     /// <summary>

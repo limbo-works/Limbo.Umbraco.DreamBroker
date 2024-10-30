@@ -34,16 +34,16 @@ The latest version (`v13.x`) supports Umbraco 13, whereas older releases support
 
 ### Umbraco 13
 
-The package targets Umbraco 13 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/13.0.0). To install the package, you can use either .NET CLI:
+The package targets Umbraco 13 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/13.0.1). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.DreamBroker --version 13.0.0
+dotnet add package Limbo.Umbraco.DreamBroker --version 13.0.1
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.DreamBroker -Version 13.0.0
+Install-Package Limbo.Umbraco.DreamBroker -Version 13.0.1
 ```
 
 ### Other versions of Umbraco

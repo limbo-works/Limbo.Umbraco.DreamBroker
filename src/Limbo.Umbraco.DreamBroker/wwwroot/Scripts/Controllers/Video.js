@@ -23,7 +23,7 @@
                 }
 
                 if (!$scope.model.value) $scope.model.value = {};
-                $scope.model.value.video = video;
+                $scope.model.value.details = video;
                 vm.loading = false;
                 vm.update();
 
@@ -32,7 +32,7 @@
         } else {
 
             delete $scope.model.value.channel;
-            delete $scope.model.value.video;
+            delete $scope.model.value.details;
             vm.update();
 
         }
@@ -52,7 +52,7 @@
     vm.add = function() {
         dreamBrokerService.openAddVideo(function (video) {
             if (!$scope.model.value) $scope.model.value = {};
-            $scope.model.value.video = video;
+            $scope.model.value.details = video;
             $scope.model.value.source = dreamBrokerService.getVideoUrl(video.channelId, video.videoId);
             vm.update();
         });
@@ -63,22 +63,22 @@
 
         const url = $scope.model.value && $scope.model.value.url;
         const source = $scope.model.value && $scope.model.value.source;
-        const video = $scope.model.value && $scope.model.value.video;
+        const details = $scope.model.value && $scope.model.value.details;
 
-        if (!url && !source && !video) {
+        if (!url && !source && !details) {
             $scope.model.value = null;
             vm.duration = null;
             vm.thumbnail = null;
             return;
         }
 
-        if (!video) {
+        if (!details) {
             vm.thumbnail = null;
             return;
         }
 
-        vm.duration = dreamBrokerService.getDuration(video.duration);
-        vm.thumbnail = dreamBrokerService.getThumbnail(video.channelId, video.videoId);
+        vm.duration = dreamBrokerService.getDuration(details.duration);
+        vm.thumbnail = dreamBrokerService.getThumbnail(details.channelId, details.videoId);
 
     };
 
@@ -93,6 +93,11 @@
             if ($scope.model.value.url && !$scope.model.value.source) {
                 $scope.model.value.source = $scope.model.value.url;
                 delete $scope.model.value.url;
+            }
+
+            if ($scope.model.value.video) {
+                if (!$scope.model.value.details) $scope.model.value.details = $scope.model.value.video;
+                delete $scope.model.value.video;
             }
 
         } else {

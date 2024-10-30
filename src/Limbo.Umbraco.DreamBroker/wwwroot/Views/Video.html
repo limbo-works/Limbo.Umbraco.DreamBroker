@@ -8,7 +8,7 @@
             <i class="icon icon-refresh"></i>
         </button>
     </div>
-    <div class="dreambroker-video-details" ng-show="model.value.video">
+    <div class="dreambroker-video-details" ng-show="model.value.details">
         <h5>Video</h5>
         <div>
             <div class="dreambroker-thumbnail">
@@ -20,13 +20,13 @@
                         <th>
                             <localize key="dreambroker_id">ID</localize>
                         </th>
-                        <td><code>{{model.value.video.videoId}}</code></td>
+                        <td><code>{{model.value.details.videoId}}</code></td>
                     </tr>
                     <tr>
                         <th>
                             <localize key="dreambroker_title">Title</localize>
                         </th>
-                        <td>{{model.value.video.title}}</td>
+                        <td>{{model.value.details.title}}</td>
                     </tr>
                     <tr>
                         <th>

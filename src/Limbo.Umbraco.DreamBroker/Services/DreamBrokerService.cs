@@ -4,11 +4,13 @@ using System.Linq;
 using System.Net;
 using Limbo.Umbraco.DreamBroker.Models.Channels;
 using Limbo.Umbraco.DreamBroker.Models.Videos;
+using Limbo.Umbraco.DreamBroker.Models.Videos.Intermediary;
 using Newtonsoft.Json;
 using Skybrud.Essentials.Http;
 using Skybrud.Essentials.Http.Collections;
 using Skybrud.Essentials.Json.Newtonsoft;
 using Skybrud.Essentials.Json.Newtonsoft.Extensions;
+using Skybrud.Essentials.Strings;
 using Skybrud.Essentials.Time;
 using Umbraco.Cms.Core.Services;
 
@@ -146,6 +148,31 @@ public class DreamBrokerService {
 
         // Parse the response body
         return JsonUtils.ParseJsonObject(response.Body, DreamBrokerOEmbed.Parse)!;
+
+    }
+
+    /// <summary>
+    /// Attempts to look up the video identified by the specified <paramref name="source"/>, and return an instance of <see cref="DreamBrokerIntermediaryVideoValue"/> if successful. When serialize to JSON, the value equals the property value saved in the database for properties using the Dream Broker video data type.
+    /// </summary>
+    /// <param name="source">The source (URL) as entered by the user.</param>
+    /// <returns>An instance of <see cref="DreamBrokerIntermediaryVideoValue"/> if successful; otherwise, <see langword="null"/>.</returns>
+    public virtual DreamBrokerIntermediaryVideoValue? GetIntermediaryVideoValueFromSource(string? source) {
+
+        // Return null right away if no source
+        if (string.IsNullOrWhiteSpace(source)) return null;
+
+        // Throw an exception if the source is not valid
+        if (!Uri.TryCreate(source, UriKind.Absolute, out Uri? uri)) throw new Exception("Invalid DreamBroker source.");
+        if (uri.Host != "dreambroker.com") throw new Exception("Invalid Dreambroker URL.");
+        if (!RegexUtils.IsMatch(uri.AbsolutePath, "^/channel/([a-z0-9]+)/([a-z0-9]+)$", out string? channelId, out string? videoId)) throw new Exception("Invalid Dreambroker URL.");
+
+        // As DreamBroker doesn't really have an API, we get all the videos of the channel via their internal API,
+        // and then pick the video with the matching ID
+        VideoItem? video = GetChannelVideos(channelId).FirstOrDefault(x => x.VideoId == videoId);
+        if (video == null) throw new Exception($"DreamBroker video with ID '{videoId}' not found.");
+
+        return new DreamBrokerIntermediaryVideoValue(source, video);
+
 
     }
 

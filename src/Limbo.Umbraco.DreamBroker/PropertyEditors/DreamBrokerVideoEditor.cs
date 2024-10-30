@@ -24,7 +24,7 @@ public class DreamBrokerVideoEditor : DataEditor {
 
     public const string EditorView = "/App_Plugins/Limbo.Umbraco.DreamBroker/Views/Video.html";
 
-    public const string EditorIcon = "icon-dreambroker-alt color-limbo";
+    public const string EditorIcon = "icon-limbo-dreambroker-alt color-limbo";
 
     #endregion
 

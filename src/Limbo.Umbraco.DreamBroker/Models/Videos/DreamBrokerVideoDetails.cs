@@ -72,7 +72,8 @@ public class DreamBrokerVideoDetails : IVideoDetails {
         Title = json.GetString("title")!;
         Duration = json.GetDouble("duration", TimeSpan.FromSeconds);
         Thumbnails = [
-            DreamBrokerThumbnail.Create(this, 470, 264, true)
+            DreamBrokerThumbnail.Create(this, 470, 264, true),
+            DreamBrokerThumbnail.CreatePoster(this)
         ];
         Files = [];
     }

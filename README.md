@@ -13,7 +13,7 @@ The latest version (`v13.x`) supports Umbraco 13, whereas older releases support
 <table>
   <tr>
     <td><strong>License:</strong></td>
-    <td><a href="https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/blob/v2/main/LICENSE.md"><strong>MIT License</strong></a></td>
+    <td><a href="https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/blob/v13/main/LICENSE.md"><strong>MIT License</strong></a></td>
   </tr>
   <tr>
     <td><strong>Umbraco:</strong></td>
@@ -34,16 +34,16 @@ The latest version (`v13.x`) supports Umbraco 13, whereas older releases support
 
 ### Umbraco 13
 
-The package targets Umbraco 13 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/13.0.1). To install the package, you can use either .NET CLI:
+The package targets Umbraco 13 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/13.0.2). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.DreamBroker --version 13.0.1
+dotnet add package Limbo.Umbraco.DreamBroker --version 13.0.2
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.DreamBroker -Version 13.0.1
+Install-Package Limbo.Umbraco.DreamBroker -Version 13.0.2
 ```
 
 ### Other versions of Umbraco

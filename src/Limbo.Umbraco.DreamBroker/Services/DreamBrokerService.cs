@@ -156,7 +156,17 @@ public class DreamBrokerService {
     /// </summary>
     /// <param name="source">The source (URL) as entered by the user.</param>
     /// <returns>An instance of <see cref="DreamBrokerIntermediaryVideoValue"/> if successful; otherwise, <see langword="null"/>.</returns>
+    [Obsolete("Use the 'GetIntermediaryVideoValue' method instead.")]
     public virtual DreamBrokerIntermediaryVideoValue? GetIntermediaryVideoValueFromSource(string? source) {
+        return GetIntermediaryVideoValue(source);
+    }
+
+    /// <summary>
+    /// Attempts to look up the video identified by the specified <paramref name="source"/>, and return an instance of <see cref="DreamBrokerIntermediaryVideoValue"/> if successful. When serialize to JSON, the value equals the property value saved in the database for properties using the Dream Broker video data type.
+    /// </summary>
+    /// <param name="source">The source (URL) as entered by the user.</param>
+    /// <returns>An instance of <see cref="DreamBrokerIntermediaryVideoValue"/> if successful; otherwise, <see langword="null"/>.</returns>
+    public virtual DreamBrokerIntermediaryVideoValue? GetIntermediaryVideoValue(string? source) {
 
         // Return null right away if no source
         if (string.IsNullOrWhiteSpace(source)) return null;
@@ -172,7 +182,6 @@ public class DreamBrokerService {
         if (video == null) throw new Exception($"DreamBroker video with ID '{videoId}' not found.");
 
         return new DreamBrokerIntermediaryVideoValue(source, video);
-
 
     }
 

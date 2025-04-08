@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Limbo.Umbraco.DreamBroker.Exceptions;
 using Limbo.Umbraco.DreamBroker.Models.Channels;
 using Limbo.Umbraco.DreamBroker.Models.Videos;
 using Limbo.Umbraco.DreamBroker.Models.Videos.Intermediary;
@@ -144,7 +145,7 @@ public class DreamBrokerService {
             .Get("https://dreambroker.com/channel/oembed", query);
 
         // Validate the response
-        if (response.StatusCode != HttpStatusCode.OK) throw new Exception($"Failed getting OEmbed details for video.\r\n\r\nChannel ID: {channelId}\r\nVideo ID: {videoId}");
+        if (response.StatusCode != HttpStatusCode.OK) throw new DreamBrokerOEmbedException(channelId, videoId);
 
         // Parse the response body
         return JsonUtils.ParseJsonObject(response.Body, DreamBrokerOEmbed.Parse)!;
@@ -172,14 +173,14 @@ public class DreamBrokerService {
         if (string.IsNullOrWhiteSpace(source)) return null;
 
         // Throw an exception if the source is not valid
-        if (!Uri.TryCreate(source, UriKind.Absolute, out Uri? uri)) throw new Exception("Invalid DreamBroker source.");
-        if (uri.Host != "dreambroker.com" && uri.Host != "www.dreambroker.com") throw new Exception("Invalid Dreambroker URL.");
-        if (!RegexUtils.IsMatch(uri.AbsolutePath, "^/channel/([a-z0-9]+)/([a-z0-9]+)$", out string? channelId, out string? videoId)) throw new Exception("Invalid Dreambroker URL.");
+        if (!Uri.TryCreate(source, UriKind.Absolute, out Uri? uri)) throw new DreamBrokerInvalidSourceException(source);
+        if (uri.Host != "dreambroker.com" && uri.Host != "www.dreambroker.com") throw new DreamBrokerInvalidUrlException(uri.ToString());
+        if (!RegexUtils.IsMatch(uri.AbsolutePath, "^/channel/([a-z0-9]+)/([a-z0-9]+)$", out string? channelId, out string? videoId)) throw new DreamBrokerInvalidUrlException(uri.ToString());
 
         // As DreamBroker doesn't really have an API, we get all the videos of the channel via their internal API,
         // and then pick the video with the matching ID
         VideoItem? video = GetChannelVideos(channelId).FirstOrDefault(x => x.VideoId == videoId);
-        if (video == null) throw new Exception($"DreamBroker video with ID '{videoId}' not found.");
+        if (video == null) throw new DreamBrokerVideoNotFoundException(videoId);
 
         return new DreamBrokerIntermediaryVideoValue(source, video);
 

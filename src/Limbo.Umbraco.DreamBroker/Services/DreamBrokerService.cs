@@ -173,7 +173,7 @@ public class DreamBrokerService {
 
         // Throw an exception if the source is not valid
         if (!Uri.TryCreate(source, UriKind.Absolute, out Uri? uri)) throw new Exception("Invalid DreamBroker source.");
-        if (uri.Host != "dreambroker.com") throw new Exception("Invalid Dreambroker URL.");
+        if (uri.Host != "dreambroker.com" && uri.Host != "www.dreambroker.com") throw new Exception("Invalid Dreambroker URL.");
         if (!RegexUtils.IsMatch(uri.AbsolutePath, "^/channel/([a-z0-9]+)/([a-z0-9]+)$", out string? channelId, out string? videoId)) throw new Exception("Invalid Dreambroker URL.");
 
         // As DreamBroker doesn't really have an API, we get all the videos of the channel via their internal API,

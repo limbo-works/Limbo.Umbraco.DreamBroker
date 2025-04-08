@@ -44,7 +44,7 @@ public class DreamBrokerService {
     /// <param name="channelId">The DreamBroker ID of the channel.</param>
     /// <param name="name">A friendly name of the channel. The name doesn't have to match the channel's actual name.</param>
     /// <returns>An instance of <see cref="DreamBrokerChannel"/> representing the created channel.</returns>
-    public DreamBrokerChannel AddChannel(string channelId, string name) {
+    public virtual DreamBrokerChannel AddChannel(string channelId, string name) {
 
         // Prepare details for the new channel
         Guid key = Guid.NewGuid();
@@ -65,7 +65,7 @@ public class DreamBrokerService {
     /// </summary>
     /// <param name="channelId">The ID or key of the channel.</param>
     /// <returns>An instance of <see cref="DreamBrokerChannel"/>, or <c>null</c> if not found.</returns>
-    public DreamBrokerChannel? GetChannel(string channelId) {
+    public virtual DreamBrokerChannel? GetChannel(string channelId) {
         if (string.IsNullOrWhiteSpace(channelId)) throw new ArgumentNullException(nameof(channelId));
         return GetChannels().FirstOrDefault(x => x.ChannelId == channelId || x.Key.ToString() == channelId);
     }
@@ -74,7 +74,7 @@ public class DreamBrokerService {
     /// Deletes the specified channel from Umbraco.
     /// </summary>
     /// <param name="channel">The channel to be deleted.</param>
-    public void DeleteChannel(DreamBrokerChannel channel) {
+    public virtual void DeleteChannel(DreamBrokerChannel channel) {
         if (channel == null) throw new ArgumentNullException(nameof(channel));
         _keyValueService.SetValue($"Limbo.Umbraco.DreamBroker.Channels.{channel.Key}", null!);
     }
@@ -83,7 +83,7 @@ public class DreamBrokerService {
     /// Returns a list of the DreamBroker channels added in Umbraco.
     /// </summary>
     /// <returns>A list of <see cref="DreamBrokerChannel"/>.</returns>
-    public IReadOnlyList<DreamBrokerChannel> GetChannels() {
+    public virtual IReadOnlyList<DreamBrokerChannel> GetChannels() {
         return _keyValueService
             .FindByKeyPrefix("Limbo.Umbraco.DreamBroker.Channels.")?.Values
             .Select(x => JsonUtils.ParseJsonObject(x!, DreamBrokerChannel.Parse)!)
@@ -95,7 +95,7 @@ public class DreamBrokerService {
     /// </summary>
     /// <param name="channelId">The ID of the channel.</param>
     /// <returns>A list of <see cref="VideoItem"/>.</returns>
-    public IReadOnlyList<VideoItem> GetChannelVideos(string channelId) {
+    public virtual IReadOnlyList<VideoItem> GetChannelVideos(string channelId) {
 
         // Validate the input
         if (string.IsNullOrWhiteSpace(channelId)) throw new ArgumentNullException(nameof(channelId));
@@ -117,7 +117,7 @@ public class DreamBrokerService {
     /// </summary>
     /// <param name="channel">The channel.</param>
     /// <returns>A list of <see cref="VideoItem"/>.</returns>
-    public IReadOnlyList<VideoItem> GetChannelVideos(DreamBrokerChannel channel) {
+    public virtual IReadOnlyList<VideoItem> GetChannelVideos(DreamBrokerChannel channel) {
         if (channel == null) throw new ArgumentNullException(nameof(channel));
         return GetChannelVideos(channel.ChannelId);
     }
@@ -128,7 +128,7 @@ public class DreamBrokerService {
     /// <param name="channelId">The ID of the channel.</param>
     /// <param name="videoId">The ID of the video.</param>
     /// <returns>An instance of <see cref="DreamBrokerOEmbed"/>.</returns>
-    public DreamBrokerOEmbed GetOEmbed(string channelId, string videoId) {
+    public virtual DreamBrokerOEmbed GetOEmbed(string channelId, string videoId) {
 
         // Input validation
         if (string.IsNullOrWhiteSpace(channelId)) throw new ArgumentNullException(nameof(channelId));

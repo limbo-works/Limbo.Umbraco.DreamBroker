@@ -70,17 +70,17 @@ public class DreamBrokerController : UmbracoAuthorizedApiController {
         List<object> channels = [];
 
         // Iterate through the channels added to Umbraco
-        foreach (DreamBrokerChannel channnel in _dreamBrokerService.GetChannels()) {
+        foreach (DreamBrokerChannel channel in _dreamBrokerService.GetChannels()) {
 
             // get the videos of the channel
             IEnumerable<VideoItem> cv = _dreamBrokerService
-                .GetChannelVideos(channnel)
+                .GetChannelVideos(channel)
                 .Where(x => string.IsNullOrWhiteSpace(text) || x.Title.InvariantIndexOf(text) >= 0 || x.VideoId == text);
 
             // Append the channel to the overall list
             channels.Add(new {
-                channelId = channnel.ChannelId,
-                name = channnel.Name,
+                channelId = channel.ChannelId,
+                name = channel.Name,
                 videos = cv
             });
 

@@ -1,6 +1,6 @@
-﻿using System;
-using System.Diagnostics;
+using System;
 using Skybrud.Essentials.Reflection;
+using Skybrud.Essentials.Security.Extensions;
 using Umbraco.Cms.Core.Semver;
 
 namespace Limbo.Umbraco.DreamBroker;
@@ -8,7 +8,7 @@ namespace Limbo.Umbraco.DreamBroker;
 /// <summary>
 /// Static class with various information and constants about the package.
 /// </summary>
-public class DreamBrokerPackage {
+public static class DreamBrokerPackage {
 
     /// <summary>
     /// Gets the alias of the package.
@@ -28,14 +28,19 @@ public class DreamBrokerPackage {
     /// <summary>
     /// Gets the information version of the package.
     /// </summary>
-    public static readonly string InformationalVersion = FileVersionInfo
-        .GetVersionInfo(typeof(DreamBrokerPackage).Assembly.Location).ProductVersion!
+    public static readonly string InformationalVersion = ReflectionUtils
+        .GetInformationalVersion(typeof(DreamBrokerPackage))
         .Split('+')[0];
 
     /// <summary>
     /// Gets the semantic version of the package.
     /// </summary>
-    public static readonly SemVersion SemVersion = SemVersion.Parse(ReflectionUtils.GetInformationalVersion<DreamBrokerPackage>());
+    public static readonly SemVersion SemVersion = SemVersion.Parse(InformationalVersion);
+
+    /// <summary>
+    /// Gets a cache buster for the client side assets of this package. The value is a hashed representation of <see cref="InformationalVersion"/>.
+    /// </summary>
+    public static readonly string CacheBuster = InformationalVersion.ToMd5Hash();
 
     /// <summary>
     /// Gets the URL of the GitHub repository for this package.
@@ -50,7 +55,6 @@ public class DreamBrokerPackage {
     /// <summary>
     /// Gets the URL of the documentation for this package.
     /// </summary>
-    public const string DocumentationUrl = "https://packages.limbo.works/limbo.umbraco.dreambroker/v13/docs/";
-
+    public const string DocumentationUrl = "https://packages.limbo.works/limbo.umbraco.dreambroker/v17/docs/";
 
 }

@@ -91,6 +91,33 @@ public class DreamBrokerService {
     }
 
     /// <summary>
+    /// Attempts to determine the name of the DreamBroker channel with the specified <paramref name="channelId"/>.
+    /// </summary>
+    /// <param name="channelId">The DreamBroker ID of the channel.</param>
+    /// <returns>The name of the channel if it could be determined; otherwise, <see langword="null"/>.</returns>
+    /// <remarks>As DreamBroker doesn't have a public API, the name is scraped from the public channel page.</remarks>
+    // [CHANGE: Umbraco 17 upgrade - moved here from Controllers/DreamBrokerController.cs so the HTTP calls all live in
+    // the service] Related: Controllers/DreamBrokerController.cs, Models/Channels/DreamBrokerChannelDetails.cs
+    public virtual string? GetChannelName(string channelId) {
+
+        if (string.IsNullOrWhiteSpace(channelId)) throw new ArgumentNullException(nameof(channelId));
+
+        try {
+
+            IHttpResponse response = HttpUtils.Requests.Get($"https://dreambroker.com/channel/{channelId}");
+            if (response.StatusCode != HttpStatusCode.OK) return null;
+
+            return RegexUtils.IsMatch(response.Body, "channelTitle: '(.+?)',", out string? name) ? name : null;
+
+        } catch {
+
+            return null;
+
+        }
+
+    }
+
+    /// <summary>
     /// Returns a list of videos of the channel matching the specified <paramref name="channelId"/>.
     /// </summary>
     /// <param name="channelId">The ID of the channel.</param>

@@ -3,8 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using Limbo.Umbraco.DreamBroker.Models.Channels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Converters.Time;
 using Skybrud.Essentials.Json.Newtonsoft;
+using Skybrud.Essentials.Json.Newtonsoft.Converters.Time;
 using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
 namespace Limbo.Umbraco.DreamBroker.Models.Videos;
@@ -38,7 +38,7 @@ public class VideoItem : JsonObjectBase {
     /// Gets the duration of the video.
     /// </summary>
     [JsonProperty("duration")]
-    [JsonConverter(typeof(TimeSpanSecondsConverter))]
+    [JsonConverter(typeof(TimeSpanConverter))]
     public TimeSpan Duration { get; }
 
     #endregion

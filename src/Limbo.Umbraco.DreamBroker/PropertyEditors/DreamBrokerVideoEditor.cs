@@ -1,20 +1,21 @@
-﻿using Umbraco.Cms.Core.IO;
-using Umbraco.Cms.Core.Models;
+// [CHANGE: Umbraco 17 upgrade - the [DataEditor] attribute no longer carries a name, view, icon or group. Those are
+// now declared client side by the "propertyEditorSchema"/"propertyEditorUi" manifests, and IEditorConfigurationParser
+// was removed] Related: wwwroot/EntryPoint.js, PropertyEditors/DreamBrokerVideoConfigurationEditor.cs
+
+using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.PropertyEditors;
-using Umbraco.Cms.Core.Services;
 
 #pragma warning disable 1591
 
 namespace Limbo.Umbraco.DreamBroker.PropertyEditors;
 
 /// <summary>
-/// Represents a block list property editor.
+/// Represents the DreamBroker video property editor.
 /// </summary>
-[DataEditor(EditorAlias, EditorName, EditorView, ValueType = ValueTypes.Json, Group = "Limbo", Icon = EditorIcon)]
+[DataEditor(EditorAlias, ValueType = ValueTypes.Json)]
 public class DreamBrokerVideoEditor : DataEditor {
 
     private readonly IIOHelper _ioHelper;
-    private readonly IEditorConfigurationParser _editorConfigurationParser;
 
     #region Constants
 
@@ -22,31 +23,27 @@ public class DreamBrokerVideoEditor : DataEditor {
 
     public const string EditorName = "Limbo DreamBroker Video";
 
-    public const string EditorView = "/App_Plugins/Limbo.Umbraco.DreamBroker/Views/Video.html";
+    /// <summary>
+    /// Gets the alias of the property editor UI registered for this editor.
+    /// </summary>
+    public const string EditorUiAlias = "Limbo.Umbraco.DreamBroker.Video.Ui";
 
-    public const string EditorIcon = "icon-limbo-dreambroker-alt color-limbo";
+    public const string EditorIcon = "limbo-dreambroker-alt";
 
     #endregion
 
     #region Constructors
 
-    public DreamBrokerVideoEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser, IDataValueEditorFactory dataValueEditorFactory) : base(dataValueEditorFactory) {
+    public DreamBrokerVideoEditor(IDataValueEditorFactory dataValueEditorFactory, IIOHelper ioHelper) : base(dataValueEditorFactory) {
         _ioHelper = ioHelper;
-        _editorConfigurationParser = editorConfigurationParser;
     }
 
     #endregion
 
     #region Member methods
 
-    public override IDataValueEditor GetValueEditor(object? configuration) {
-        IDataValueEditor editor = base.GetValueEditor(configuration);
-        if (editor is DataValueEditor dve) dve.View += $"?v={DreamBrokerPackage.InformationalVersion}";
-        return editor;
-    }
-
     protected override IConfigurationEditor CreateConfigurationEditor() {
-        return new DreamBrokerVideoConfigurationEditor(_ioHelper, _editorConfigurationParser);
+        return new DreamBrokerVideoConfigurationEditor(_ioHelper);
     }
 
     #endregion

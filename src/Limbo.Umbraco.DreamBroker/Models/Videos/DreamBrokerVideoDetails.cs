@@ -4,8 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using Limbo.Umbraco.Video.Models.Videos;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Skybrud.Essentials.Json.Converters.Time;
-using Skybrud.Essentials.Json.Extensions;
+using Skybrud.Essentials.Json.Newtonsoft.Converters.Time;
+using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 
 namespace Limbo.Umbraco.DreamBroker.Models.Videos;
 
@@ -44,7 +44,7 @@ public class DreamBrokerVideoDetails : IVideoDetails {
     /// Gets the duration of the video.
     /// </summary>
     [JsonProperty("duration")]
-    [JsonConverter(typeof(TimeSpanSecondsConverter))]
+    [JsonConverter(typeof(TimeSpanConverter))]
     public TimeSpan? Duration { get; }
 
     /// <summary>
@@ -53,13 +53,15 @@ public class DreamBrokerVideoDetails : IVideoDetails {
     [JsonProperty("thumbnails")]
     public DreamBrokerThumbnail[] Thumbnails { get; }
 
-    IEnumerable<IVideoThumbnail> IVideoDetails.Thumbnails => Thumbnails;
+    // [CHANGE: Umbraco 17 upgrade - IVideoDetails in Limbo.Umbraco.Video 17 exposes these as IReadOnlyList<T> rather
+    // than IEnumerable<T>] Related: Models/Videos/DreamBrokerVideoValue.cs, Limbo.Umbraco.DreamBroker.csproj
+    IReadOnlyList<IVideoThumbnail> IVideoDetails.Thumbnails => Thumbnails;
 
     /// <summary>
     /// Gets an array with the files of the video. This will currently always be empty.
     /// </summary>
     [JsonIgnore]
-    public IEnumerable<IVideoFile> Files { get; }
+    public IReadOnlyList<IVideoFile> Files { get; }
 
     #endregion
 
@@ -82,9 +84,17 @@ public class DreamBrokerVideoDetails : IVideoDetails {
 
     #region Static methods
 
-    [return: NotNullIfNotNull(nameof(json))]
     internal static DreamBrokerVideoDetails? Parse(JObject? json) {
-        return json == null ? null : new DreamBrokerVideoDetails(json);
+
+        if (json is null) return null;
+
+        // Both IDs are required - the URL and the thumbnails are derived from them, and DreamBrokerThumbnail.Create
+        // throws if either is missing
+        if (string.IsNullOrWhiteSpace(json.GetString("channelId"))) return null;
+        if (string.IsNullOrWhiteSpace(json.GetString("videoId"))) return null;
+
+        return new DreamBrokerVideoDetails(json);
+
     }
 
     #endregion

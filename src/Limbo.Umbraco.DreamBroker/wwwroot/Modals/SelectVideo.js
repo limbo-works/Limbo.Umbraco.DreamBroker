@@ -215,6 +215,7 @@ export class LimboDreamBrokerSelectVideoModalElement extends UmbModalBaseElement
         }
 
         .video-card-title {
+            margin-top: 5px;
             font-weight: bold;
         }
 

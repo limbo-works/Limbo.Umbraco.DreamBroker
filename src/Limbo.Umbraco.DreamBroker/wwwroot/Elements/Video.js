@@ -16,6 +16,19 @@ import {
     LIMBO_DREAMBROKER_SUGGEST_CHANNEL_MODAL
 } from "@limbo/dreambroker/modals/tokens";
 
+const DEFAULT_CONFIG = {
+    hideLabel: false
+};
+
+function tryHideLabel(element) {
+    const umbPropertyLayout = element.parentElement?.parentElement;
+    if (umbPropertyLayout) {
+        umbPropertyLayout.setAttribute("orientation", "vertical");
+        const headerColumn = umbPropertyLayout.shadowRoot?.querySelector("#headerColumn");
+        if (headerColumn) headerColumn.style.display = "none";
+    }
+}
+
 export class LimboDreamBrokerVideoElement extends UmbFormControlMixin(UmbLitElement, undefined) {
 
     static properties = {
@@ -26,11 +39,19 @@ export class LimboDreamBrokerVideoElement extends UmbFormControlMixin(UmbLitElem
         _error: { state: true }
     };
 
+    #config = { ...DEFAULT_CONFIG };
     #value;
     #sourceInput;
     #debounceTimer = 0;
     #requestToken = 0;
     #modalManagerContext;
+    set config(config) {
+        if (!config) return;
+        this.#config = {
+            hideLabel: config.getValueByAlias("hideLabel") === true
+        };
+        this.requestUpdate();
+    }
 
     get value() {
         return this.#value;
@@ -63,6 +84,11 @@ export class LimboDreamBrokerVideoElement extends UmbFormControlMixin(UmbLitElem
             () => !!this.mandatory && !this.#details()
         );
 
+    }
+
+    connectedCallback() {
+        super.connectedCallback();
+        if (this.#config.hideLabel) tryHideLabel(this);
     }
 
     firstUpdated(changedProperties) {

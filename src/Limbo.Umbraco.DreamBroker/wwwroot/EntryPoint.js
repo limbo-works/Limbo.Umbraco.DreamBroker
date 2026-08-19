@@ -50,7 +50,17 @@ function registerExtensions(extensionRegistry) {
         alias: SCHEMA_ALIAS,
         name: "Limbo DreamBroker Video",
         meta: {
-            defaultPropertyEditorUiAlias: UI_ALIAS
+            defaultPropertyEditorUiAlias: UI_ALIAS,
+            settings: {
+                properties: [
+                    {
+                        alias: "hideLabel",
+                        label: "Hide label?",
+                        description: "Should the label in the property editor be hidden?",
+                        propertyEditorUiAlias: 'Umb.PropertyEditorUi.Toggle',
+                    }
+                ]
+            }
         }
     });
 

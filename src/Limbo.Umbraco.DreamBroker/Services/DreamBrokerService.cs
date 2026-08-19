@@ -91,6 +91,33 @@ public class DreamBrokerService {
     }
 
     /// <summary>
+    /// Attempts to determine the name of the DreamBroker channel with the specified <paramref name="channelId"/>.
+    /// </summary>
+    /// <param name="channelId">The DreamBroker ID of the channel.</param>
+    /// <returns>The name of the channel if it could be determined; otherwise, <see langword="null"/>.</returns>
+    /// <remarks>As DreamBroker doesn't have a public API, the name is scraped from the public channel page.</remarks>
+    // [CHANGE: Umbraco 17 upgrade - moved here from Controllers/DreamBrokerController.cs so the HTTP calls all live in
+    // the service] Related: Controllers/DreamBrokerController.cs, Models/Channels/DreamBrokerChannelDetails.cs
+    public virtual string? GetChannelName(string channelId) {
+
+        if (string.IsNullOrWhiteSpace(channelId)) throw new ArgumentNullException(nameof(channelId));
+
+        try {
+
+            IHttpResponse response = HttpUtils.Requests.Get($"https://dreambroker.com/channel/{channelId}");
+            if (response.StatusCode != HttpStatusCode.OK) return null;
+
+            return RegexUtils.IsMatch(response.Body, "channelTitle: '(.+?)',", out string name) ? name : null;
+
+        } catch {
+
+            return null;
+
+        }
+
+    }
+
+    /// <summary>
     /// Returns a list of videos of the channel matching the specified <paramref name="channelId"/>.
     /// </summary>
     /// <param name="channelId">The ID of the channel.</param>
@@ -157,16 +184,6 @@ public class DreamBrokerService {
     /// </summary>
     /// <param name="source">The source (URL) as entered by the user.</param>
     /// <returns>An instance of <see cref="DreamBrokerIntermediaryVideoValue"/> if successful; otherwise, <see langword="null"/>.</returns>
-    [Obsolete("Use the 'GetIntermediaryVideoValue' method instead.")]
-    public virtual DreamBrokerIntermediaryVideoValue? GetIntermediaryVideoValueFromSource(string? source) {
-        return GetIntermediaryVideoValue(source);
-    }
-
-    /// <summary>
-    /// Attempts to look up the video identified by the specified <paramref name="source"/>, and return an instance of <see cref="DreamBrokerIntermediaryVideoValue"/> if successful. When serialize to JSON, the value equals the property value saved in the database for properties using the Dream Broker video data type.
-    /// </summary>
-    /// <param name="source">The source (URL) as entered by the user.</param>
-    /// <returns>An instance of <see cref="DreamBrokerIntermediaryVideoValue"/> if successful; otherwise, <see langword="null"/>.</returns>
     public virtual DreamBrokerIntermediaryVideoValue? GetIntermediaryVideoValue(string? source) {
 
         // Return null right away if no source
@@ -175,7 +192,7 @@ public class DreamBrokerService {
         // Throw an exception if the source is not valid
         if (!Uri.TryCreate(source, UriKind.Absolute, out Uri? uri)) throw new DreamBrokerInvalidSourceException(source);
         if (uri.Host != "dreambroker.com" && uri.Host != "www.dreambroker.com") throw new DreamBrokerInvalidUrlException(uri.ToString());
-        if (!RegexUtils.IsMatch(uri.AbsolutePath, "^/channel/([a-z0-9]+)/([a-z0-9]+)$", out string? channelId, out string? videoId)) throw new DreamBrokerInvalidUrlException(uri.ToString());
+        if (!RegexUtils.IsMatch(uri.AbsolutePath, "^/channel/([a-z0-9]+)/([a-z0-9]+)$", out string channelId, out string videoId)) throw new DreamBrokerInvalidUrlException(uri.ToString());
 
         // As DreamBroker doesn't really have an API, we get all the videos of the channel via their internal API,
         // and then pick the video with the matching ID

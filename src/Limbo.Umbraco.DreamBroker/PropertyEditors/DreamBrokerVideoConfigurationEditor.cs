@@ -1,6 +1,9 @@
-﻿﻿using Umbraco.Cms.Core.IO;
+// [CHANGE: Umbraco 17 upgrade - ConfigurationEditor<T> now only takes IIOHelper, and configuration fields no longer
+// have a server side "View" to rewrite (the editors are declared in the client side schema manifest)]
+// Related: PropertyEditors/DreamBrokerVideoEditor.cs, wwwroot/EntryPoint.js
+
+using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.PropertyEditors;
-using Umbraco.Cms.Core.Services;
 
 #pragma warning disable CS1591
 
@@ -8,18 +11,6 @@ namespace Limbo.Umbraco.DreamBroker.PropertyEditors;
 
 public class DreamBrokerVideoConfigurationEditor : ConfigurationEditor<DreamBrokerVideoConfiguration> {
 
-    public DreamBrokerVideoConfigurationEditor(IIOHelper ioHelper, IEditorConfigurationParser editorConfigurationParser) : base(ioHelper, editorConfigurationParser) {
-
-        foreach (ConfigurationField field in Fields) {
-
-            if (field.View is not null) {
-                field.View = field.View
-                    .Replace("{version}", DreamBrokerPackage.InformationalVersion)
-                    .Replace("{alias}", field.Key);
-            }
-
-        }
-
-    }
+    public DreamBrokerVideoConfigurationEditor(IIOHelper ioHelper) : base(ioHelper) { }
 
 }

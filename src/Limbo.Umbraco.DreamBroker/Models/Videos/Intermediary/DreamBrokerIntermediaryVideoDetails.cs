@@ -1,6 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Skybrud.Essentials.Json.Converters.Time;
+using Skybrud.Essentials.Json.Newtonsoft.Converters.Time;
 
 namespace Limbo.Umbraco.DreamBroker.Models.Videos.Intermediary;
 
@@ -31,7 +31,7 @@ public class DreamBrokerIntermediaryVideoDetails {
     /// Gets the duration of the video.
     /// </summary>
     [JsonProperty("duration")]
-    [JsonConverter(typeof(TimeSpanSecondsConverter))]
+    [JsonConverter(typeof(TimeSpanConverter))]
     public TimeSpan Duration { get; }
 
     /// <summary>

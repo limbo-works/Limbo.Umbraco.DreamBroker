@@ -50,9 +50,9 @@ Install-Package Limbo.Umbraco.DreamBroker -Version 17.0.0-alpha000
 
 ### Other versions of Umbraco
 
-- [**`v13/main`**](https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/tree/v13/main) (Umbraco 13)
-- [**`v2/main`**](https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/tree/v2/main) (Umbraco 10-12)
-- [**`v1/main`**](https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/tree/v1/main) (Umbraco 9)
+- [**`v13/main`**](https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/tree/v13/main) Umbraco 13
+- ~~[**`v2/main`**](https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/tree/v2/main) Umbraco 10-12 <sub title="Umbraco 10, 11 and 12 have reached end-of-life"><sup>(EOL)</sup>
+- ~~[**`v1/main`**](https://github.com/limbo-works/Limbo.Umbraco.DreamBroker/tree/v1/main) Umbraco 9 <sub title="Umbraco 9 has reached end-of-life"><sup>(EOL)</sup></sub>
 
 
 

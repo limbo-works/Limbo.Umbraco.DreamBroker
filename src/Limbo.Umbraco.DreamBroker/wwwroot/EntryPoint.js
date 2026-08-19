@@ -9,7 +9,7 @@ import { DreamBrokerService } from "@limbo/dreambroker/service";
 const ALIAS = "Limbo.Umbraco.DreamBroker";
 
 // Matches DreamBrokerVideoEditor.EditorAlias
-const SCHEMA_ALIAS = "Limbo.Umbraco.DreamBroker";
+const SCHEMA_ALIAS = "Limbo.Umbraco.DreamBroker.Video";
 
 // Matches DreamBrokerVideoEditor.EditorUiAlias
 const UI_ALIAS = "Limbo.Umbraco.DreamBroker.Video.Ui";

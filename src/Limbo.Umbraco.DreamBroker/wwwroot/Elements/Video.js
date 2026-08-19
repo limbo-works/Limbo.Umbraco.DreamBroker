@@ -349,11 +349,11 @@ export class LimboDreamBrokerVideoElement extends UmbFormControlMixin(UmbLitElem
             border: 1px solid var(--uui-color-border);
             border-radius: var(--uui-border-radius);
             background: var(--uui-color-surface-alt);
-            max-width: 800px;
         }
 
         .card-row {
             display: flex;
+            flex-wrap: wrap;
             gap: var(--uui-size-space-4);
             align-items: flex-start;
         }

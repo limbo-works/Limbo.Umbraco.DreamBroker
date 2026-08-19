@@ -19,16 +19,9 @@ public class DreamBrokerVideoEditor : DataEditor {
 
     #region Constants
 
-    public const string EditorAlias = "Limbo.Umbraco.DreamBroker";
+    public const string EditorAlias = "Limbo.Umbraco.DreamBroker.Video";
 
-    public const string EditorName = "Limbo DreamBroker Video";
-
-    /// <summary>
-    /// Gets the alias of the property editor UI registered for this editor.
-    /// </summary>
     public const string EditorUiAlias = "Limbo.Umbraco.DreamBroker.Video.Ui";
-
-    public const string EditorIcon = "limbo-dreambroker-alt";
 
     #endregion
 

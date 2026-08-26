@@ -7,6 +7,7 @@ import { DreamBrokerPackage } from "@limbo/dreambroker/package";
 import { DreamBrokerService } from "@limbo/dreambroker/service";
 
 const ALIAS = "Limbo.Umbraco.DreamBroker";
+const NAME = "Limbo DreamBroker";
 
 // Matches DreamBrokerVideoEditor.EditorAlias
 const SCHEMA_ALIAS = "Limbo.Umbraco.DreamBroker.Video";
@@ -23,7 +24,7 @@ function registerExtensions(extensionRegistry) {
     extensionRegistry.register({
         type: "localization",
         alias: `${ALIAS}.Localization.EnUs`,
-        name: "English (US)",
+        name: `${NAME}: English (en-US)`,
         js: () => import(`./Localization/en-US.js?v=${cacheBuster}`),
         meta: { culture: "en" }
     });
@@ -31,7 +32,7 @@ function registerExtensions(extensionRegistry) {
     extensionRegistry.register({
         type: "localization",
         alias: `${ALIAS}.Localization.DaDk`,
-        name: "Danish",
+        name: `${NAME}: Danish (da-DK)`,
         js: () => import(`./Localization/da-DK.js?v=${cacheBuster}`),
         meta: { culture: "da" }
     });
@@ -39,7 +40,7 @@ function registerExtensions(extensionRegistry) {
     extensionRegistry.register({
         type: "icons",
         alias: `${ALIAS}.Icons`,
-        name: "Limbo DreamBroker Icons",
+        name: `${NAME}: Icons`,
         js: `/App_Plugins/${ALIAS}/Icons.js?v=${cacheBuster}`
     });
 
@@ -48,7 +49,7 @@ function registerExtensions(extensionRegistry) {
     extensionRegistry.register({
         type: "propertyEditorSchema",
         alias: SCHEMA_ALIAS,
-        name: "Limbo DreamBroker Video",
+        name: `${NAME}: Video Property Editor Schema`,
         meta: {
             defaultPropertyEditorUiAlias: UI_ALIAS,
             settings: {
@@ -67,7 +68,7 @@ function registerExtensions(extensionRegistry) {
     extensionRegistry.register({
         type: "propertyEditorUi",
         alias: UI_ALIAS,
-        name: "Limbo DreamBroker Video Property Editor UI",
+        name: `${NAME}: Video Property Editor UI`,
         js: () => import(`./Elements/Video.js?v=${cacheBuster}`),
         elementName: "limbo-dreambroker-video",
         meta: {
@@ -82,14 +83,14 @@ function registerExtensions(extensionRegistry) {
     extensionRegistry.register({
         type: "modal",
         alias: `${ALIAS}.SelectVideoModal`,
-        name: "Limbo DreamBroker Select Video Modal",
+        name: `${NAME}: Select Video Modal`,
         element: `/App_Plugins/${ALIAS}/Modals/SelectVideo.js?v=${cacheBuster}`
     });
 
     extensionRegistry.register({
         type: "modal",
         alias: `${ALIAS}.SuggestChannelModal`,
-        name: "Limbo DreamBroker Suggest Channel Modal",
+        name: `${NAME}: Suggest Channel Modal`,
         element: `/App_Plugins/${ALIAS}/Modals/SuggestChannel.js?v=${cacheBuster}`
     });
 

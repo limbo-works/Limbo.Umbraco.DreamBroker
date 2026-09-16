@@ -49,11 +49,11 @@ public class DreamBrokerChannel {
     #region Constructors
 
     private DreamBrokerChannel(JObject json) {
-        Key = json.GetGuid("key");
-        Name = json.GetString("name")!;
-        ChannelId = json.GetString("channelId")!;
-        CreateDate = json.GetString("createDate", EssentialsTime.FromIso8601)!;
-        UpdateDate = json.GetString("updateDate", EssentialsTime.FromIso8601)!;
+        Key = json.GetRequiredGuid("key");
+        Name = json.GetRequiredString("name");
+        ChannelId = json.GetRequiredString("channelId");
+        CreateDate = json.GetRequiredString("createDate", EssentialsTime.ParseIso8601);
+        UpdateDate = json.GetRequiredString("updateDate", EssentialsTime.ParseIso8601);
     }
 
     internal DreamBrokerChannel(Guid key, string name, string channelId, EssentialsTime createDate, EssentialsTime updateDate) {

@@ -13,7 +13,7 @@ const NAME = "Limbo DreamBroker";
 const SCHEMA_ALIAS = "Limbo.Umbraco.DreamBroker.Video";
 
 // Matches DreamBrokerVideoEditor.EditorUiAlias
-const UI_ALIAS = "Limbo.Umbraco.DreamBroker.Video.Ui";
+const UI_ALIAS = "Limbo.Umbraco.DreamBroker.Video.PropertyEditorUi";
 
 // The manifest stamps "?v=<cacheBuster>" onto this module's own URL, so we can read the cache buster straight off it
 // instead of waiting for a round-trip to the server before registering anything.

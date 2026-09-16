@@ -9,7 +9,7 @@ using Skybrud.Essentials.Json.Newtonsoft.Extensions;
 namespace Limbo.Umbraco.DreamBroker.Models.Videos;
 
 /// <summary>
-/// Class representing the value of a <see cref="DreamBrokerVideoEditor"/> property editor.
+/// Class representing the value of a <see cref="DreamBrokerVideoPropertyEditor"/> property editor.
 /// </summary>
 public class DreamBrokerVideoValue : IVideoValue {
 

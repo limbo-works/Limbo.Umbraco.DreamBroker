@@ -29,7 +29,7 @@ public class DreamBrokerPackageManifestReader : IPackageManifestReader {
                     new {
                         type = "backofficeEntryPoint",
                         alias = $"{alias}.EntryPoint",
-                        name = $"{DreamBrokerPackage.Name} Entry Point",
+                        name = $"{DreamBrokerPackage.Name}: Entry Point",
                         js = $"/App_Plugins/{alias}/EntryPoint.js?v={cacheBuster}"
                     }
                 ],

@@ -34,16 +34,16 @@ The latest version (`v17.x`) supports Umbraco 17, whereas older releases support
 
 ### Umbraco 17
 
-The package targets Umbraco 17 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/17.0.0-alpha000). To install the package, you can use either .NET CLI:
+The package targets Umbraco 17 and is available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.DreamBroker/17.0.0-alpha002). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.DreamBroker --version 17.0.0-alpha000
+dotnet add package Limbo.Umbraco.DreamBroker --version 17.0.0-alpha002
 ```
 
 or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.DreamBroker -Version 17.0.0-alpha000
+Install-Package Limbo.Umbraco.DreamBroker -Version 17.0.0-alpha002
 ```
 
 > **Note:** this is a prerelease, so remember to allow prerelease packages when installing.

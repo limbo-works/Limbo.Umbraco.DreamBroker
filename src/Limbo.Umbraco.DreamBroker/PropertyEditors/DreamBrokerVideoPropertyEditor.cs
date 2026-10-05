@@ -19,7 +19,7 @@ public class DreamBrokerVideoPropertyEditor : DataEditor {
 
     public const string EditorAlias = "Limbo.Umbraco.DreamBroker.Video";
 
-    public const string EditorUiAlias = "Limbo.Umbraco.DreamBroker.Video.PropertyEditorUi";
+    public const string EditorUiAlias = "Limbo.Umbraco.DreamBroker.PropertyEditorUi.Video";
 
     public const string EditorIcon = "limbo-dreambroker-alt";
 

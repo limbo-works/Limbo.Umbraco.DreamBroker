@@ -306,6 +306,7 @@ export class LimboDreamBrokerVideoElement extends UmbFormControlMixin(UmbLitElem
                             <uui-button
                                 look="outline"
                                 label=${this.localize.term("limboDreamBroker_clear")}
+                                color="danger"
                                 ?disabled=${this.readonly || !source.trim()}
                                 @click=${this.#clear}>
                                 <uui-icon name="icon-trash"></uui-icon>
